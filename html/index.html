@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Gym App</title>
+    <link rel="stylesheet" href="../css/global.css" />
+    <link rel="stylesheet" href="../css/index.css" />
+  </head>
+
+  <body class="center-page">
+    <!-- PARTICULAS -->
+    <div id="particles-js"></div>
+
+    <!-- SPLASH SCREEN -->
+    <div id="splash-screen">
+      <img src="../imagenes/LOGO2.png" class="splash-logo" />
+    </div>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <div class="app-container" id="main-content">
+      <img src="../imagenes/LOGO2.png" class="logo" />
+
+      <h1 class="welcome">Bienvenid@</h1>
+
+      <p class="motivational" id="motivationalText"></p>
+
+      <button class="btn-enter" onclick="goLogin()">Entrar</button>
+    </div>
+
+    <script src="../js/motivacion.js"></script>
+
+    <!-- PARTICULAS -->
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+    <script src="../js/particles-config.js"></script>
+
+    <!-- CONTROL SPLASH -->
+    <script src="../js/splash.js"></script>
+  </body>
+</html>
