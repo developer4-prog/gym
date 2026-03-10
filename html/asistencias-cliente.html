@@ -3,8 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>Clientes</title>
+    <title>Asistencias del cliente</title>
 
     <link rel="stylesheet" href="../css/global.css" />
     <link rel="stylesheet" href="../css/admin.css" />
@@ -12,22 +11,14 @@
 
   <body>
     <div class="admin-container">
-      <h1>Clientes registrados</h1>
-      <p class="subtitle">Lista de usuarios del gimnasio</p>
+      <h1 id="tituloCliente">Asistencias del cliente</h1>
+      <p class="subtitle" id="resumenAsistencias">Cargando asistencias...</p>
 
-      <div class="search-box">
-        <input
-          type="text"
-          id="buscarCliente"
-          placeholder="Buscar cliente por nombre..."
-        />
+      <div id="lista-asistencias" class="clientes-grid">
+        <p>Cargando asistencias...</p>
       </div>
 
-      <div id="clientes-lista" class="clientes-grid">
-        <p>Cargando clientes...</p>
-      </div>
-
-      <a href="admin.html" class="btn-volver">← Volver</a>
+      <a href="admin-clientes.html" class="btn-volver">← Volver a clientes</a>
     </div>
 
     <!-- Firebase -->
@@ -36,6 +27,6 @@
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
     <script src="../js/firebase-config.js"></script>
-    <script src="../js/admin-clientes.js"></script>
+    <script src="../js/asistencias-cliente.js"></script>
   </body>
 </html>

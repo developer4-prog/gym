@@ -36,6 +36,10 @@ async function registrarAsistencia(uid, nombreCliente) {
   }
 }
 
+function verAsistencias(uid) {
+  window.location.href = `asistencias-cliente.html?uid=${uid}`;
+}
+
 async function cargarClientes() {
   const lista = document.getElementById("clientes-lista");
 
@@ -49,20 +53,26 @@ async function cargarClientes() {
       const uid = doc.id;
 
       if (user.rol === "usuario") {
-        const nombreCliente = user.nombres || user.email || "Usuario";
+        const nombreCliente = user.nombres || "Usuario";
 
         const card = document.createElement("div");
         card.classList.add("cliente-card");
 
         card.innerHTML = `
           <h3>${nombreCliente}</h3>
-          <p>${user.email || "Sin correo"}</p>
+  
           <button class="btn-asistencia">Registrar asistencia</button>
+          <button class="btn-ver-asistencias">Ver días asistidos</button>
         `;
 
-        const boton = card.querySelector(".btn-asistencia");
-        boton.addEventListener("click", () => {
+        const botonAsistencia = card.querySelector(".btn-asistencia");
+        botonAsistencia.addEventListener("click", () => {
           registrarAsistencia(uid, nombreCliente);
+        });
+
+        const botonVerAsistencias = card.querySelector(".btn-ver-asistencias");
+        botonVerAsistencias.addEventListener("click", () => {
+          verAsistencias(uid);
         });
 
         lista.appendChild(card);
@@ -79,3 +89,22 @@ async function cargarClientes() {
 }
 
 cargarClientes();
+
+const buscador = document.getElementById("buscarCliente");
+
+if (buscador) {
+  buscador.addEventListener("input", () => {
+    const texto = buscador.value.toLowerCase();
+    const tarjetas = document.querySelectorAll(".cliente-card");
+
+    tarjetas.forEach((card) => {
+      const nombre = card.querySelector("h3").textContent.toLowerCase();
+
+      if (nombre.includes(texto)) {
+        card.style.display = "block";
+      } else {
+        card.style.display = "none";
+      }
+    });
+  });
+}

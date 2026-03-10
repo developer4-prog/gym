@@ -50,4 +50,7 @@ async function login() {
 }
 
 // 4️⃣ Conectar botón de login
-document.getElementById("btnLogin").addEventListener("click", login);
+const btnLogin = document.getElementById("btnLogin");
+if (btnLogin) {
+  btnLogin.addEventListener("click", login);
+}

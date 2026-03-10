@@ -33,7 +33,7 @@
   font-size: 1rem;
 }
 
-/* TARJETAS */
+/* TARJETAS BASE */
 
 .dashboard-card {
   background: rgba(255, 255, 255, 0.92);
@@ -59,7 +59,7 @@
   color: #222;
 }
 
-/* TARJETA RACHA */
+/* TARJETA VERDE */
 
 .streak-card {
   background: linear-gradient(135deg, #00c853, #00e676);
@@ -69,6 +69,19 @@
 .streak-card h3,
 .streak-card p {
   color: white;
+}
+
+/* BLOQUE DE ESTADÍSTICAS */
+
+.stats-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+.stat-card {
+  margin-bottom: 0;
 }
 
 /* BOTONES */

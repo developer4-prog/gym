@@ -4,7 +4,7 @@ body {
   color: white;
   background:
     linear-gradient(rgba(0, 0, 0, 0.68), rgba(0, 0, 0, 0.68)),
-    url("../imagenes/fondo-gym.jpg") center/cover no-repeat fixed;
+    url("../imagenes/pesas.jpg") center/cover no-repeat fixed;
   min-height: 100vh;
 }
 
