@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="../css/global.css" />
+    <link rel="stylesheet" href="../css/historial.css" />
+  </head>
+
+  <body class="center-page">
+    <div class="container">
+      <h2 class="calendar-title">📅 Historial de entrenamientos</h2>
+
+      <div class="calendar-box">
+        <div id="month-title"></div>
+
+        <div class="week-days">
+          <div>Dom</div>
+          <div>Lun</div>
+          <div>Mar</div>
+          <div>Mié</div>
+          <div>Jue</div>
+          <div>Vie</div>
+          <div>Sáb</div>
+        </div>
+
+        <div id="calendar"></div>
+      </div>
+
+      <div id="workout-info"></div>
+    </div>
+
+    <!-- cargar Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+    <!-- Tu configuración -->
+    <script src="../js/firebase-config.js"></script>
+
+    <!-- Tu JS de funcionalidad -->
+    <script src="../js/workout.js"></script>
+    <script src="../js/historial.js"></script>
+
+    <!-- MENU INFERIOR -->
+
+    <div class="bottom-nav">
+      <a href="dashboard.html" class="nav-item">🏠</a>
+      <a href="historial.html" class="nav-item active">📅</a>
+      <a href="workout.html" class="nav-item">💪</a>
+      <a href="profile.html" class="nav-item">👤</a>
+    </div>
+  </body>
+</html>

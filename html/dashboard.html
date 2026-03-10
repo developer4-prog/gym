@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="../css/global.css" />
+    <link rel="stylesheet" href="../css/dashboard.css" />
+  </head>
+
+  <body>
+    <div class="dashboard">
+      <!-- HEADER -->
+
+      <div class="header">
+      <h2>Hola, Atleta 💪</h2>
+      </div>
+
+      <!-- RACHA -->
+
+      <div class="card streak">
+        <h3>🔥 Racha actual</h3>
+
+        <p id="streakDays">5 días entrenando</p>
+      </div>
+
+      <!-- ASISTENCIA -->
+
+      <div class="card">
+        <h3>📅 Días asistidos</h3>
+
+        <p>Esta semana: <strong>3</strong></p>
+      </div>
+
+<!-- REGISTRAR ENTRENAMIENTO -->
+
+<div class="card">
+  <h3>💪 Registrar entrenamiento</h3>
+
+  <a href="workout.html" class="btn-main">
+    Registrar músculos
+  </a>
+</div>
+
+      <!-- HISTORIAL -->
+
+<div class="card">
+  <h3>📊 Historial</h3>
+
+  <a href="historial.html" class="btn-main">
+    Ver historial
+  </a>
+</div>
+
+    <!-- MENU INFERIOR -->
+
+    <div class="bottom-nav">
+      <a href="dashboard.html" class="nav-item active">🏠</a>
+      <a href="historial.html" class="nav-item">📅</a>
+      <a href="workout.html" class="nav-item">💪</a>
+      <a href="profile.html" class="nav-item">👤</a>
+    </div>
+<script src="../js/firebase-config.js"></script>
+<script src="../js/workout.js"></script>
+  </body>
+</html>

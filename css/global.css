@@ -1,0 +1,147 @@
+/* FONDO */
+body {
+  position: relative;
+  min-height: 100vh;
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  color: rgb(8, 0, 0);
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed; /* se queda fijo al hacer scroll */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../imagenes/pesas.jpg"); /* tu imagen */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.3; /* aquí controlas la transparencia */
+  z-index: -1; /* detrás de todo el contenido */
+}
+
+/* PARTICULAS */
+
+#particles-js {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* CENTRAR PAGINAS */
+
+.center-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* LOGO GENERAL */
+
+.logo {
+  width: 200px;
+  margin-bottom: 25px;
+  animation: logoPop 1.5s ease;
+}
+
+/* ANIMACIONES GENERALES */
+
+@keyframes fadeContainer {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeText {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes logoPop {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* EVITAR SCROLL HORIZONTAL */
+
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
+}
+* {
+  box-sizing: border-box;
+}
+
+.nav-item.active {
+  color: #00ff88;
+  transform: scale(1.2);
+}
+
+button,
+.muscle-btn,
+.btn-save {
+  background-color: #ff4d6d; /* color llamativo */
+  border: none;
+  border-radius: 8px;
+  color: white;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover,
+.muscle-btn:hover,
+.btn-save:hover {
+  background-color: #ff6f91;
+}
+
+/* MENU BONITO Y FIJO */
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8); /* fondo semi-transparente */
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+  z-index: 1000;
+}
+
+.bottom-nav .nav-item {
+  color: white;
+  text-decoration: none;
+  font-size: 24px;
+}
+
+.bottom-nav .nav-item.active {
+  color: #ffcc00; /* resalta el ícono activo */
+}
