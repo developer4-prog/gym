@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Tienda de Suplementos</title>
+
+    <link rel="stylesheet" href="../css/global.css" />
+    <link rel="stylesheet" href="../css/tienda.css" />
+  </head>
+
+  <body>
+    <div class="store-container">
+      <h2>🛒 Suplementos recomendados</h2>
+
+      <div class="product-grid">
+        <!-- PROTEINA -->
+        <div class="product-card">
+          <img src="../imagenes/proteina.jpg" alt="Proteína Whey" />
+
+          <h3>Proteína Whey</h3>
+
+          <p>
+            Ayuda a la recuperación muscular y al crecimiento de masa muscular.
+          </p>
+
+          <div class="price">$45</div>
+
+          <button class="whatsapp-btn" onclick="comprar('Proteína Whey')">
+            💬 Comprar por WhatsApp
+          </button>
+        </div>
+
+        <!-- CREATINA -->
+        <div class="product-card">
+          <img src="../imagenes/creatina.jpg" alt="Creatina" />
+
+          <h3>Creatina</h3>
+
+          <p>
+            Mejora la fuerza, potencia y rendimiento durante los entrenamientos.
+          </p>
+
+          <div class="price">$30</div>
+
+          <button class="whatsapp-btn" onclick="comprar('Creatina')">
+            💬 Comprar por WhatsApp
+          </button>
+        </div>
+
+        <!-- PRE ENTREN0 -->
+        <div class="product-card">
+          <img src="../imagenes/preentreno.jpg" alt="Pre-Entreno" />
+
+          <h3>Pre-Entreno</h3>
+
+          <p>
+            Aumenta la energía, concentración y rendimiento antes del
+            entrenamiento.
+          </p>
+
+          <div class="price">$35</div>
+
+          <button class="whatsapp-btn" onclick="comprar('Pre-Entreno')">
+            💬 Comprar por WhatsApp
+          </button>
+        </div>
+
+        <!-- BCAA -->
+        <div class="product-card">
+          <img src="../imagenes/bca.jpg" alt="BCAA" />
+
+          <h3>BCAA</h3>
+
+          <p>
+            Ayuda a reducir la fatiga muscular y favorece la recuperación
+            después del entrenamiento.
+          </p>
+
+          <div class="price">$28</div>
+
+          <button class="whatsapp-btn" onclick="comprar('BCAA')">
+            💬 Comprar por WhatsApp
+          </button>
+        </div>
+
+        <!-- GLUTAMINA -->
+        <div class="product-card">
+          <img src="../imagenes/glutamina.jpg" alt="Glutamina" />
+
+          <h3>Glutamina</h3>
+
+          <p>
+            Favorece la recuperación muscular, ayuda al sistema inmune y reduce
+            el desgaste físico.
+          </p>
+
+          <div class="price">$26</div>
+
+          <button class="whatsapp-btn" onclick="comprar('Glutamina')">
+            💬 Comprar por WhatsApp
+          </button>
+        </div>
+
+        <!-- GANADOR DE PESO -->
+        <div class="product-card">
+          <img src="../imagenes/ganador.jpg" alt="Ganador de Peso" />
+
+          <h3>Ganador de Peso</h3>
+
+          <p>
+            Ideal para aumentar calorías, apoyar la ganancia de masa y mejorar
+            el desarrollo muscular.
+          </p>
+
+          <div class="price">$48</div>
+
+          <button class="whatsapp-btn" onclick="comprar('Ganador de Peso')">
+            💬 Comprar por WhatsApp
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MENU INFERIOR -->
+
+    <div class="bottom-nav">
+      <a href="dashboard.html" class="nav-item">🏠</a>
+      <a href="historial.html" class="nav-item">📅</a>
+      <a href="workout.html" class="nav-item">💪</a>
+      <a href="tienda.html" class="nav-item active">🛒</a>
+    </div>
+
+    <script src="../js/tienda.js"></script>
+  </body>
+</html>

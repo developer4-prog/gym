@@ -1,289 +1,112 @@
-/* FONDO */
+/* RESET GENERAL */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* BODY GLOBAL */
 body {
   position: relative;
   min-height: 100vh;
-  margin: 0;
-  font-family: "Segoe UI", sans-serif;
-  color: rgb(8, 0, 0);
-  overflow-x: hidden;
-}
-
-body::before {
-  content: "";
-  position: fixed; /* se queda fijo al hacer scroll */
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("../imagenes/pesas.jpg"); /* tu imagen */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 0.3; /* aquí controlas la transparencia */
-  z-index: -1; /* detrás de todo el contenido */
-}
-
-/* PARTICULAS */
-
-#particles-js {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  z-index: 0;
-  pointer-events: none;
-}
-
-/* CENTRAR PAGINAS */
-
-.center-page {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* LOGO GENERAL */
-
-.logo {
-  width: 200px;
-  margin-bottom: 25px;
-  animation: logoPop 1.5s ease;
-}
-
-/* ANIMACIONES GENERALES */
-
-@keyframes fadeContainer {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeText {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes logoPop {
-  0% {
-    transform: scale(0.5);
-    opacity: 0;
-  }
-  70% {
-    transform: scale(1.1);
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-/* EVITAR SCROLL HORIZONTAL */
-
-html,
-body {
-  width: 100%;
-  overflow-x: hidden;
-}
-* {
-  box-sizing: border-box;
-}
-
-.nav-item.active {
-  color: #00ff88;
-  transform: scale(1.2);
-}
-
-button,
-.muscle-btn,
-.btn-save {
-  background-color: #ff4d6d; /* color llamativo */
-  border: none;
-  border-radius: 8px;
-  color: white;
-  padding: 10px 20px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-button:hover,
-.muscle-btn:hover,
-.btn-save:hover {
-  background-color: #ff6f91;
-}
-
-/* MENU BONITO Y FIJO */
-
-.bottom-nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.8); /* fondo semi-transparente */
-  display: flex;
-  justify-content: space-around;
-  padding: 10px 0;
-  z-index: 1000;
-}
-
-.bottom-nav .nav-item {
-  color: white;
-  text-decoration: none;
-  font-size: 24px;
-}
-
-.bottom-nav .nav-item.active {
-  color: #ffcc00; /* resalta el ícono activo */
-}
-
-/* PARTICULAS */
-
-#particles-js {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  z-index: 0;
-  pointer-events: none;
-}
-
-/* CENTRAR PAGINAS */
-
-.center-page {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* LOGO GENERAL */
-
-.logo {
-  width: 200px;
-  margin-bottom: 25px;
-  animation: logoPop 1.5s ease;
-}
-
-/* ANIMACIONES GENERALES */
-
-@keyframes fadeContainer {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeText {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes logoPop {
-  0% {
-    transform: scale(0.5);
-    opacity: 0;
-  }
-  70% {
-    transform: scale(1.1);
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-/* EVITAR SCROLL HORIZONTAL */
-
-html,
-body {
-  width: 100%;
-  overflow-x: hidden;
-}
-* {
-  box-sizing: border-box;
-}
-
-.nav-item.active {
-  color: #00ff88;
-  transform: scale(1.2);
-}
-
-body {
-  margin: 0;
   font-family: "Segoe UI", sans-serif;
   color: white;
-  min-height: 100vh;
-
   background-image:
     linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
     url("../imagenes/fondo.jpg");
-
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   background-attachment: fixed;
 }
 
-.bottom-nav {
+/* CAPA DE FONDO OPCIONAL */
+body::before {
+  content: "";
   position: fixed;
-  bottom: 0;
+  inset: 0;
+  background-image: url("../imagenes/pesas.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.12;
+  z-index: -1;
+}
+
+/* PARTICULAS */
+#particles-js {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 65px;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
 
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(10px);
-
+/* CENTRADO GENERAL */
+.center-page {
+  min-height: 100vh;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
-
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.nav-item {
-  text-decoration: none;
-  font-size: 24px;
-  color: white;
-  opacity: 0.6;
+/* LOGO */
+.logo {
+  width: 200px;
+  margin-bottom: 25px;
+  animation: logoPop 1.5s ease;
+}
+
+/* ANIMACIONES */
+@keyframes fadeContainer {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeText {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes logoPop {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* BOTONES GENERALES */
+button {
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
   transition: 0.3s;
-}
-
-.nav-item:hover {
-  opacity: 1;
-  transform: scale(1.2);
-}
-
-.nav-item.active {
-  opacity: 1;
-}
-
-.card {
-  background: rgba(0, 0, 0, 0.6);
-  border-radius: 15px;
-  padding: 20px;
-  margin: 15px;
-
-  backdrop-filter: blur(10px);
-
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
 }
 
 button:active {

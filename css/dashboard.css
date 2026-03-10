@@ -1,13 +1,17 @@
-<<<<<<< HEAD
-/* DASHBOARD */
+/* DASHBOARD PAGE */
+
+.dashboard-page {
+  min-height: 100vh;
+  padding: 30px 18px 110px;
+  display: flex;
+  justify-content: center;
+}
 
 .dashboard {
+  width: 100%;
+  max-width: 430px;
   position: relative;
   z-index: 2;
-  max-width: 420px;
-  margin: auto;
-  padding: 20px;
-  padding-bottom: 100px;
 }
 
 /* HEADER */
@@ -16,154 +20,145 @@
   margin-bottom: 20px;
 }
 
-/* TARJETAS */
-
-.card {
-  background: #ffffff;
-  padding: 20px;
-  border-radius: 15px;
-  margin-bottom: 15px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+.header h2 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #ffffff;
 }
 
-/* RACHA */
+.welcome-text {
+  margin-top: 8px;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 1rem;
+}
 
-.streak {
+/* TARJETAS */
+
+.dashboard-card {
+  background: rgba(255, 255, 255, 0.92);
+  color: #111;
+  padding: 22px;
+  border-radius: 22px;
+  margin-bottom: 18px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(10px);
+}
+
+.dashboard-card h3 {
+  margin: 0 0 14px;
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #111;
+}
+
+.dashboard-card p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #222;
+}
+
+/* TARJETA RACHA */
+
+.streak-card {
   background: linear-gradient(135deg, #00c853, #00e676);
   color: white;
 }
 
-/* BOTON PRINCIPAL */
+.streak-card h3,
+.streak-card p {
+  color: white;
+}
+
+/* BOTONES */
 
 .btn-main {
-  width: 100%;
-  padding: 14px;
-  margin-top: 10px;
-  border: none;
-  border-radius: 10px;
+  display: inline-block;
+  margin-top: 8px;
   background: #111;
   color: white;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s;
+  text-decoration: none;
+  padding: 14px 20px;
+  border-radius: 14px;
+  font-weight: 700;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
 }
 
 .btn-main:hover {
-  transform: scale(1.05);
+  background: #222;
+  transform: translateY(-2px);
+}
+
+.btn-main:active {
+  transform: scale(0.97);
 }
 
 /* MENU INFERIOR */
 
 .bottom-nav {
   position: fixed;
-  bottom: 0;
+  bottom: 12px;
   left: 50%;
   transform: translateX(-50%);
-  width: 100%;
-  max-width: 420px;
-  height: 70px;
-  background: white;
+  width: calc(100% - 24px);
+  max-width: 430px;
+  height: 68px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
   display: flex;
   justify-content: space-around;
   align-items: center;
-  box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
-  border-radius: 20px 20px 0 0;
-  z-index: 5;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  z-index: 20;
 }
 
-/* ICONOS */
-
 .nav-item {
-  font-size: 24px;
-  cursor: pointer;
-  transition: 0.3s;
+  font-size: 1.7rem;
+  text-decoration: none;
+  color: #666;
+  transition:
+    transform 0.2s ease,
+    color 0.2s ease;
 }
 
 .nav-item:hover {
-  transform: scale(1.2);
-}
-=======
-/* DASHBOARD */
-
-.dashboard {
-  position: relative;
-  z-index: 2;
-  max-width: 420px;
-  margin: auto;
-  padding: 20px;
-  padding-bottom: 100px;
+  transform: scale(1.12);
+  color: #111;
 }
 
-/* HEADER */
-
-.header {
-  margin-bottom: 20px;
+.nav-item.active {
+  color: #00c853;
+  transform: scale(1.1);
 }
 
-/* TARJETAS */
+/* RESPONSIVE */
 
-.card {
-  background: #ffffff;
-  padding: 20px;
-  border-radius: 15px;
-  margin-bottom: 15px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+@media (max-width: 480px) {
+  .dashboard-page {
+    padding: 22px 14px 105px;
+  }
+
+  .header h2 {
+    font-size: 1.8rem;
+  }
+
+  .dashboard-card {
+    padding: 20px 18px;
+    border-radius: 18px;
+  }
+
+  .dashboard-card h3 {
+    font-size: 1.15rem;
+  }
+
+  .btn-main {
+    width: 100%;
+    text-align: center;
+  }
 }
-
-/* RACHA */
-
-.streak {
-  background: linear-gradient(135deg, #00c853, #00e676);
-  color: white;
-}
-
-/* BOTON PRINCIPAL */
-
-.btn-main {
-  width: 100%;
-  padding: 14px;
-  margin-top: 10px;
-  border: none;
-  border-radius: 10px;
-  background: #111;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.btn-main:hover {
-  transform: scale(1.05);
-}
-
-/* MENU INFERIOR */
-
-.bottom-nav {
-  position: fixed;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  max-width: 420px;
-  height: 70px;
-  background: white;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
-  border-radius: 20px 20px 0 0;
-  z-index: 5;
-}
-
-/* ICONOS */
-
-.nav-item {
-  font-size: 24px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.nav-item:hover {
-  transform: scale(1.2);
-}
->>>>>>> d237cf52747f5c4b4b7704c3a3e49b3d762f75e3
