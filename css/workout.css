@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* WORKOUT */
 
 .workout-container {
@@ -80,3 +81,87 @@
   transform: scale(1.05);
   background: #00c853;
 }
+=======
+/* WORKOUT */
+
+.workout-container {
+  max-width: 420px;
+  margin: auto;
+  padding: 20px;
+  padding-bottom: 100px;
+  position: relative;
+  z-index: 2;
+}
+
+/* GRID MUSCULOS */
+
+.muscle-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+/* BOTONES MUSCULOS */
+
+.muscle-btn {
+  padding: 16px;
+  border: none;
+  border-radius: 12px;
+  background: #f2f2f2;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.muscle-btn:hover {
+  transform: scale(1.05);
+  background: #e8e8e8;
+}
+
+.muscle-btn.active {
+  background: #00c853;
+  color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.workout-page {
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 20px;
+}
+
+.muscle-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  gap: 15px;
+
+  margin-top: 20px;
+}
+
+.muscle-btn {
+  padding: 18px;
+
+  border: none;
+  border-radius: 12px;
+
+  background: #1e1e1e;
+  color: white;
+
+  font-size: 16px;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.muscle-btn:hover {
+  transform: scale(1.05);
+  background: #00c853;
+}
+>>>>>>> d237cf52747f5c4b4b7704c3a3e49b3d762f75e3

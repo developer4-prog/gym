@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* DASHBOARD */
 
 .dashboard {
@@ -81,3 +82,88 @@
 .nav-item:hover {
   transform: scale(1.2);
 }
+=======
+/* DASHBOARD */
+
+.dashboard {
+  position: relative;
+  z-index: 2;
+  max-width: 420px;
+  margin: auto;
+  padding: 20px;
+  padding-bottom: 100px;
+}
+
+/* HEADER */
+
+.header {
+  margin-bottom: 20px;
+}
+
+/* TARJETAS */
+
+.card {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* RACHA */
+
+.streak {
+  background: linear-gradient(135deg, #00c853, #00e676);
+  color: white;
+}
+
+/* BOTON PRINCIPAL */
+
+.btn-main {
+  width: 100%;
+  padding: 14px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 10px;
+  background: #111;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-main:hover {
+  transform: scale(1.05);
+}
+
+/* MENU INFERIOR */
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 420px;
+  height: 70px;
+  background: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 20px 20px 0 0;
+  z-index: 5;
+}
+
+/* ICONOS */
+
+.nav-item {
+  font-size: 24px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.nav-item:hover {
+  transform: scale(1.2);
+}
+>>>>>>> d237cf52747f5c4b4b7704c3a3e49b3d762f75e3
