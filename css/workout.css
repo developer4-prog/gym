@@ -93,40 +93,6 @@ body {
   transform: scale(0.98);
 }
 
-.bottom-nav {
-  position: fixed;
-  left: 50%;
-  bottom: 16px;
-  transform: translateX(-50%);
-  width: min(92%, 500px);
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding: 12px 8px;
-  border-radius: 20px;
-  background: rgba(10, 10, 10, 0.88);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
-}
-
-.nav-item {
-  text-decoration: none;
-  font-size: 1.4rem;
-  color: rgba(255, 255, 255, 0.75);
-  transition:
-    transform 0.2s ease,
-    color 0.2s ease;
-}
-
-.nav-item:hover {
-  transform: scale(1.08);
-  color: white;
-}
-
-.nav-item.active {
-  color: #ff5f7a;
-}
-
 @media (max-width: 768px) {
   .dashboard {
     margin: 20px 14px 100px;

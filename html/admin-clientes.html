@@ -3,25 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login - Gym App</title>
+
+    <title>Clientes</title>
+
     <link rel="stylesheet" href="../css/global.css" />
-    <link rel="stylesheet" href="../css/login.css" />
+    <link rel="stylesheet" href="../css/admin.css" />
   </head>
 
-  <body class="login-page center-page">
-    <div class="login-container">
-      <img src="../imagenes/LOGO.png" class="logo" alt="Logo Gym App" />
-      <h2>Iniciar sesión</h2>
-      <input type="email" id="email" placeholder="Correo" />
-      <input type="password" id="password" placeholder="Contraseña" />
-      <button id="btnLogin">Entrar</button>
+  <body>
+    <div class="admin-container">
+      <h1>Clientes registrados</h1>
+      <p class="subtitle">Lista de usuarios del gimnasio</p>
+
+      <div id="clientes-lista" class="clientes-grid">
+        <p>Cargando clientes...</p>
+      </div>
+
+      <a href="admin.html" class="btn-volver">← Volver</a>
     </div>
+
+    <!-- Firebase -->
 
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
     <script src="../js/firebase-config.js"></script>
-    <script src="../js/login.js"></script>
+    <script src="../js/admin-clientes.js"></script>
   </body>
 </html>

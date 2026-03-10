@@ -86,29 +86,6 @@
   transform: scale(0.97);
 }
 
-/* MENU INFERIOR */
-.bottom-nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
-  display: flex;
-  justify-content: space-around;
-  padding: 12px 0;
-  z-index: 1000;
-}
-
-.nav-item {
-  font-size: 24px;
-  color: white;
-  text-decoration: none;
-}
-
-.nav-item.active {
-  color: #ffcc00;
-}
-
 /* TABLET */
 @media (max-width: 900px) {
   .product-grid {

@@ -1,0 +1,108 @@
+.admin-container {
+  max-width: 900px;
+  margin: auto;
+  padding: 40px 20px;
+  text-align: center;
+  padding-bottom: 120px;
+}
+
+.admin-container h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  opacity: 0.8;
+  margin-bottom: 40px;
+}
+
+/* GRID */
+
+.admin-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+}
+
+/* TARJETAS */
+
+.admin-card {
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 20px;
+  padding: 40px 25px;
+  text-decoration: none;
+  color: white;
+  backdrop-filter: blur(10px);
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+
+  transition: 0.25s;
+}
+
+.admin-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+.icon {
+  font-size: 45px;
+  margin-bottom: 15px;
+}
+
+.admin-card h3 {
+  margin-bottom: 10px;
+}
+
+.admin-card p {
+  font-size: 14px;
+  opacity: 0.85;
+}
+
+/* MOVIL */
+
+@media (max-width: 700px) {
+  .admin-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-card {
+    padding: 35px 20px;
+  }
+}
+
+/* CLIENTES */
+
+.clientes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.cliente-card {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+
+  backdrop-filter: blur(10px);
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.cliente-card h3 {
+  margin-bottom: 8px;
+}
+
+.btn-volver {
+  display: inline-block;
+  margin-top: 30px;
+
+  padding: 10px 20px;
+
+  background: #ff4d6d;
+  border-radius: 10px;
+
+  text-decoration: none;
+  color: white;
+}
