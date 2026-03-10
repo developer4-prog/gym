@@ -68,3 +68,54 @@
   position: relative;
   padding: 20px;
 }
+
+@media (max-width: 480px) {
+  .login-container {
+    width: 100%;
+    max-width: 360px;
+    padding: 28px 20px;
+    border-radius: 18px;
+  }
+
+  .login-page {
+    padding: 16px;
+  }
+
+  .login-container input {
+    padding: 13px;
+    font-size: 15px;
+  }
+
+  .input-group input {
+    padding-left: 40px;
+  }
+}
+
+.login-container,
+.login-container *,
+.login-container *::before,
+.login-container *::after {
+  box-sizing: border-box;
+}
+
+@media (max-width: 480px) {
+  .login-container {
+    width: 100%;
+    max-width: 360px;
+    padding: 28px 20px;
+    border-radius: 18px;
+  }
+
+  .login-page {
+    padding: 16px;
+  }
+
+  .login-container input {
+    padding: 13px;
+    font-size: 15px;
+  }
+
+  .input-group input {
+    padding-left: 40px;
+  }
+}
