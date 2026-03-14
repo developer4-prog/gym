@@ -1,6 +1,6 @@
 // Solo una vez: auth y db
-const auth = firebase.auth();
-const db = firebase.firestore();
+//const auth = firebase.auth();
+//const db = firebase.firestore();
 
 // Función de login
 async function login() {

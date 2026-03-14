@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Gym App</title>
+    <link rel="icon" href="../imagenes/icon-192.png" />
+
     <link rel="stylesheet" href="../css/global.css" />
     <link rel="stylesheet" href="../css/index.css" />
   </head>
@@ -22,6 +24,10 @@
       <p class="motivational" id="motivationalText"></p>
 
       <button class="btn-enter" onclick="goLogin()">Entrar</button>
+
+      <button id="installBtn" class="install-btn" hidden>
+        📲 Instalar app
+      </button>
     </div>
 
     <script src="../js/firebase-config.js"></script>
@@ -34,5 +40,19 @@
 
     <!-- CONTROL SPLASH -->
     <script src="../js/splash.js"></script>
+
+    <!-- INSTALL -->
+    <script src="../js/install.js"></script>
+
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("/gym/service-worker.js")
+            .then(() => console.log("SW registrado desde html/index"))
+            .catch((err) => console.log("Error SW", err));
+        });
+      }
+    </script>
   </body>
 </html>
