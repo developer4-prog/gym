@@ -22,10 +22,8 @@ async function login() {
 
       if (userData.rol === "admin") {
         window.location.href = "admin.html";
-      } else if (userData.rol === "entrenador") {
-        window.location.href = "index.html";
-      } else {
-        window.location.href = "index.html";
+      } else if (userData.rol === "usuario") {
+        window.location.href = "dashboard.html";
       }
     } else {
       alert("No se encontró el rol del usuario.");
