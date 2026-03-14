@@ -2,6 +2,12 @@ const rachaActual = document.getElementById("rachaActual");
 const diasAsistidosMes = document.getElementById("diasAsistidosMes");
 const saludoUsuario = document.getElementById("saludoUsuario");
 
+const membresiaInicio = document.getElementById("membresiaInicio");
+const membresiaFin = document.getElementById("membresiaFin");
+const estadoMembresia = document.getElementById("estadoMembresia");
+const cardDiasAsistidos = document.getElementById("cardDiasAsistidos");
+const rachaFirePopup = document.getElementById("rachaFirePopup");
+
 function getStartOfWeek(date) {
   const d = new Date(date);
   const day = d.getDay();
@@ -37,8 +43,23 @@ function convertirFechaDesdeId(fechaId) {
   return new Date(anio, mes, dia);
 }
 
+function calcularEstadoMembresia(fechaFin) {
+  if (!fechaFin) {
+    return { texto: "Sin registrar", clase: "sin-membresia" };
+  }
+
+  const hoy = new Date();
+  const fin = new Date(fechaFin + "T23:59:59");
+
+  if (hoy > fin) {
+    return { texto: "Vencida", clase: "vencida" };
+  }
+
+  return { texto: "Activa", clase: "activa" };
+}
+
 function cargarResumenAsistencias(uid) {
-  /* CARGAR NOMBRE DEL USUARIO */
+  /* CARGAR DATOS DEL USUARIO */
 
   db.collection("usuarios")
     .doc(uid)
@@ -54,7 +75,24 @@ function cargarResumenAsistencias(uid) {
 
           saludoUsuario.textContent = `Hola, ${nombreFormateado} 💪`;
         }
+
+        if (membresiaInicio) {
+          membresiaInicio.textContent = `Inicio: ${data.membresiaInicio || "--"}`;
+        }
+
+        if (membresiaFin) {
+          membresiaFin.textContent = `Fin: ${data.membresiaFin || "--"}`;
+        }
+
+        if (estadoMembresia) {
+          const estado = calcularEstadoMembresia(data.membresiaFin);
+          estadoMembresia.textContent = `Estado: ${estado.texto}`;
+          estadoMembresia.className = `estado-membresia-user ${estado.clase}`;
+        }
       }
+    })
+    .catch((error) => {
+      console.error("Error cargando datos del usuario:", error);
     });
 
   /* CONTAR ASISTENCIAS */
@@ -94,6 +132,28 @@ function cargarResumenAsistencias(uid) {
 
       if (diasAsistidosMes) {
         diasAsistidosMes.textContent = `Este mes: ${totalMes}`;
+      }
+      if (totalMes >= 20 && rachaFirePopup) {
+        rachaFirePopup.classList.remove("hidden");
+
+        setTimeout(() => {
+          rachaFirePopup.classList.add("hidden");
+        }, 3000);
+      }
+      if (cardDiasAsistidos) {
+        cardDiasAsistidos.classList.remove(
+          "racha-leve",
+          "racha-media",
+          "racha-fuerte",
+        );
+
+        if (totalMes >= 21) {
+          cardDiasAsistidos.classList.add("racha-fuerte");
+        } else if (totalMes >= 14) {
+          cardDiasAsistidos.classList.add("racha-media");
+        } else if (totalMes >= 7) {
+          cardDiasAsistidos.classList.add("racha-leve");
+        }
       }
     })
     .catch((error) => {

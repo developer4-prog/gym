@@ -196,3 +196,85 @@
   margin: 6px 0;
   color: #333;
 }
+
+.membresia-box {
+  margin: 15px 0;
+  padding: 12px;
+  border-radius: 12px;
+  background: #f4f6f8;
+  text-align: left;
+}
+
+.membresia-box label {
+  display: block;
+  margin: 8px 0 4px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.membresia-box input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.btn-guardar-membresia {
+  width: 100%;
+  padding: 10px;
+  background: #2e7d32;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.btn-guardar-membresia:hover {
+  background: #256428;
+}
+
+.estado-membresia {
+  margin: 10px 0;
+  font-weight: bold;
+}
+
+.estado-membresia.activa {
+  color: #2e7d32;
+}
+
+.estado-membresia.vencida {
+  color: #c62828;
+}
+
+.estado-membresia.sin-membresia {
+  color: #777;
+}
+
+.oculto {
+  display: none;
+}
+
+.btn-toggle-membresia {
+  width: 100%;
+  padding: 10px;
+  background: #444;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 10px 0;
+}
+
+.btn-toggle-membresia:hover {
+  background: #333;
+}
+
+.membresia-box {
+  margin: 12px 0;
+  padding: 12px;
+  border-radius: 12px;
+  background: #f4f6f8;
+  text-align: left;
+}

@@ -154,3 +154,15 @@ body.login-page {
     padding: 13px;
   }
 }
+
+.login-error {
+  margin-top: 12px;
+  color: #ff5a5a;
+  font-size: 0.9rem;
+  text-align: center;
+  min-height: 20px;
+}
+
+.oculto {
+  display: none;
+}
