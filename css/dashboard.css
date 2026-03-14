@@ -1,15 +1,15 @@
 /* DASHBOARD PAGE */
 
 .dashboard-page {
+  width: 100%;
   min-height: 100vh;
-  padding: 30px 18px 110px;
-  display: flex;
-  justify-content: center;
+  padding: 20px 14px 110px;
 }
 
 .dashboard {
   width: 100%;
-  max-width: 430px;
+  max-width: 520px;
+  margin: 0 auto;
   position: relative;
   z-index: 2;
 }
@@ -36,6 +36,7 @@
 /* TARJETAS BASE */
 
 .dashboard-card {
+  width: 100%;
   text-align: center;
   background: rgba(255, 255, 255, 0.92);
   color: #111;
@@ -283,6 +284,10 @@
 @media (max-width: 480px) {
   .dashboard-page {
     padding: 22px 14px 105px;
+  }
+
+  .dashboard {
+    max-width: 100%;
   }
 
   .header h2 {
