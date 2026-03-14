@@ -2,7 +2,7 @@
   "name": "Gym App",
   "short_name": "Gym",
   "description": "App para gestionar clientes, asistencias y progreso del gimnasio",
-  "start_url": "/gym/",
+  "start_url": "/gym/html/index.html",
   "scope": "/gym/",
   "display": "standalone",
   "background_color": "#111111",

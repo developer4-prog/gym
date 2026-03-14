@@ -1,42 +1,18 @@
 <!doctype html>
 <html lang="es">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gym App</title>
     <link rel="manifest" href="/gym/manifest.json" />
     <meta name="theme-color" content="#111111" />
     <link rel="icon" href="/gym/imagenes/icon-192.png" />
-    <meta charset="UTF-8" />
-    <meta http-equiv="refresh" content="0; url=./html/index.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Redirigiendo...</title>
-    <script>
-      window.location.href = "./html/index.html";
-    </script>
   </head>
   <body>
-    <p>Redirigiendo a la app...</p>
+    <p>Abriendo app...</p>
 
     <script>
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-          navigator.serviceWorker
-            .register("/gym/service-worker.js")
-            .then((reg) => console.log("Service Worker registrado", reg))
-            .catch((err) =>
-              console.log("Error registrando Service Worker", err),
-            );
-        });
-      }
-    </script>
-
-    <script>
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-          navigator.serviceWorker
-            .register("/gym/service-worker.js")
-            .then(() => console.log("SW registrado desde html/index"))
-            .catch((err) => console.log("Error SW", err));
-        });
-      }
+      window.location.replace("./html/index.html");
     </script>
   </body>
 </html>
