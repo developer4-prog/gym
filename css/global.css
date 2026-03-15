@@ -3,20 +3,22 @@
   box-sizing: border-box;
 }
 
-html,
-body {
+html {
   width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
+  height: 100%;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
 }
 
-/* BODY GLOBAL */
 body {
-  position: relative;
-  min-height: 100dvh;
   width: 100%;
+  min-height: 100dvh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  position: relative;
   font-family: "Segoe UI", sans-serif;
   color: white;
   background-image:
@@ -31,8 +33,7 @@ body {
 /* PARTICULAS */
 #particles-js {
   position: fixed;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100%;
   height: 100%;
   z-index: 0;
@@ -41,6 +42,7 @@ body {
 
 /* CENTRADO GENERAL */
 .center-page {
+  width: 100%;
   min-height: 100dvh;
   display: flex;
   justify-content: center;
@@ -50,6 +52,7 @@ body {
 /* LOGO */
 .logo {
   width: 200px;
+  max-width: 80%;
   margin-bottom: 25px;
   animation: logoPop 1.5s ease;
 }
@@ -102,35 +105,28 @@ button:active {
   transform: scale(0.95);
 }
 
-/* =========================
-   BARRA INFERIOR GLOBAL
-========================= */
-
+/* BARRA INFERIOR GLOBAL */
 .bottom-nav {
   position: fixed;
-  left: 50%;
-  bottom: 18px;
-  transform: translateX(-50%);
-  width: calc(100% - 24px);
-  max-width: 520px;
-  height: 74px;
-  padding: 0 10px;
-
+  left: 12px;
+  right: 12px;
+  bottom: 14px;
+  transform: none;
+  width: auto;
+  max-width: none;
+  height: 68px;
+  padding: 0 8px;
   display: flex;
   justify-content: space-around;
   align-items: center;
-
   background: rgba(15, 15, 15, 0.92);
   backdrop-filter: blur(12px);
-
-  border-radius: 26px;
+  border-radius: 22px;
   border: 1px solid rgba(255, 255, 255, 0.06);
-
   box-shadow:
     0 12px 30px rgba(0, 0, 0, 0.35),
     0 8px 24px rgba(255, 59, 59, 0.18),
     0 2px 0 rgba(255, 80, 80, 0.65);
-
   z-index: 9999;
 }
 
@@ -138,10 +134,10 @@ button:active {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 44px;
-  min-height: 44px;
+  min-width: 40px;
+  min-height: 40px;
   text-decoration: none;
-  font-size: 28px;
+  font-size: 25px;
   color: rgba(255, 255, 255, 0.72);
   transition:
     transform 0.2s ease,
@@ -158,21 +154,4 @@ button:active {
   color: white;
   transform: scale(1.08);
   filter: drop-shadow(0 0 6px rgba(255, 70, 70, 0.45));
-}
-
-@media (max-width: 480px) {
-  .bottom-nav {
-    bottom: 14px;
-    width: calc(100% - 20px);
-    max-width: 100%;
-    height: 68px;
-    padding: 0 8px;
-    border-radius: 22px;
-  }
-
-  .nav-item {
-    min-width: 40px;
-    min-height: 40px;
-    font-size: 25px;
-  }
 }

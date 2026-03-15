@@ -2,19 +2,17 @@
 
 .dashboard-page {
   width: 100%;
-  min-height: 100vh;
-  padding: 20px 14px 110px;
+  min-height: 100dvh;
+  padding: 20px 12px 110px;
 }
 
 .dashboard {
   width: 100%;
-  max-width: 520px;
-  margin: 0 auto;
+  max-width: none;
+  margin: 0;
   position: relative;
   z-index: 2;
 }
-
-/* HEADER */
 
 .header {
   margin-bottom: 20px;
@@ -33,16 +31,14 @@
   font-size: 1rem;
 }
 
-/* TARJETAS BASE */
-
 .dashboard-card {
   width: 100%;
   text-align: center;
   background: rgba(255, 255, 255, 0.92);
   color: #111;
-  padding: 22px;
-  border-radius: 22px;
-  margin-bottom: 18px;
+  padding: 20px 16px;
+  border-radius: 20px;
+  margin-bottom: 16px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22);
   backdrop-filter: blur(10px);
   transition:
@@ -57,19 +53,17 @@
 
 .dashboard-card h3 {
   margin: 0 0 14px;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: 800;
   color: #111;
 }
 
 .dashboard-card p {
   margin: 0;
-  font-size: 1rem;
+  font-size: 0.98rem;
   line-height: 1.5;
   color: #222;
 }
-
-/* TARJETA VERDE */
 
 .streak-card {
   background: linear-gradient(135deg, #00c853, #00e676);
@@ -81,28 +75,26 @@
   color: white;
 }
 
-/* BLOQUE DE ESTADÍSTICAS */
-
 .stats-grid {
   display: flex;
   flex-direction: column;
-  gap: 18px;
-  margin-bottom: 18px;
+  gap: 16px;
+  margin-bottom: 16px;
 }
 
 .stat-card {
   margin-bottom: 0;
 }
 
-/* BOTONES */
-
 .btn-main {
-  display: inline-block;
+  display: block;
+  width: 100%;
   margin-top: 14px;
   background: #111;
   color: white;
   text-decoration: none;
-  padding: 14px 20px;
+  text-align: center;
+  padding: 14px 18px;
   border-radius: 14px;
   font-weight: 700;
   transition:
@@ -120,8 +112,6 @@
 .btn-main:active {
   transform: scale(0.97);
 }
-
-/* MEMBRESÍA */
 
 .membership-card p {
   margin: 6px 0;
@@ -143,8 +133,6 @@
 .estado-membresia-user.sin-membresia {
   color: #777;
 }
-
-/* EFECTO DE RACHA EN DÍAS ASISTIDOS */
 
 #cardDiasAsistidos {
   position: relative;
@@ -198,8 +186,6 @@
   }
 }
 
-/* POPUP DE RACHA */
-
 .racha-fire-popup {
   position: fixed;
   inset: 0;
@@ -221,8 +207,8 @@
   background: linear-gradient(145deg, #1f1f1f, #2a2a2a);
   color: white;
   text-align: center;
-  padding: 28px 22px;
-  border-radius: 22px;
+  padding: 24px 18px;
+  border-radius: 18px;
   box-shadow:
     0 0 18px rgba(255, 120, 0, 0.35),
     0 0 35px rgba(255, 80, 0, 0.22);
@@ -231,20 +217,20 @@
 }
 
 .fire-emoji {
-  font-size: 3rem;
+  font-size: 2.6rem;
   margin-bottom: 10px;
   animation: fireBounce 1s infinite ease-in-out;
 }
 
 .racha-fire-content h3 {
   margin: 0 0 8px;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   color: #ffb347;
 }
 
 .racha-fire-content p {
   margin: 0;
-  font-size: 0.98rem;
+  font-size: 0.93rem;
   color: #f2f2f2;
   line-height: 1.4;
 }
@@ -276,52 +262,5 @@
   }
   50% {
     transform: translateY(-4px) scale(1.08);
-  }
-}
-
-/* RESPONSIVE */
-
-@media (max-width: 480px) {
-  .dashboard-page {
-    padding: 22px 14px 105px;
-  }
-
-  .dashboard {
-    max-width: 100%;
-  }
-
-  .header h2 {
-    font-size: 1.8rem;
-  }
-
-  .dashboard-card {
-    padding: 20px 18px;
-    border-radius: 18px;
-  }
-
-  .dashboard-card h3 {
-    font-size: 1.15rem;
-  }
-
-  .btn-main {
-    width: 100%;
-    text-align: center;
-  }
-
-  .racha-fire-content {
-    padding: 24px 18px;
-    border-radius: 18px;
-  }
-
-  .fire-emoji {
-    font-size: 2.6rem;
-  }
-
-  .racha-fire-content h3 {
-    font-size: 1.3rem;
-  }
-
-  .racha-fire-content p {
-    font-size: 0.93rem;
   }
 }
