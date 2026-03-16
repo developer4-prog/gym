@@ -65,7 +65,9 @@ document.addEventListener("DOMContentLoaded", () => {
     snapshot.forEach((doc) => {
       const data = doc.data();
       const fecha = doc.id; // YYYY-MM-DD
-      const date = new Date(fecha);
+
+      const [y, m, d] = fecha.split("-").map(Number);
+      const date = new Date(y, m - 1, d);
 
       if (date.getMonth() === month && date.getFullYear() === year) {
         workouts[date.getDate()] = data.ejercicios.join(", ");
