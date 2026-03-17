@@ -14,18 +14,13 @@
     <title>Gym App</title>
 
     <link rel="icon" href="/gym/imagenes/icon-192.png" />
-
     <link rel="stylesheet" href="../css/global.css" />
     <link rel="stylesheet" href="../css/index.css" />
   </head>
 
   <body class="center-page">
-    <!-- PARTICULAS -->
-    <div id="particles-js"></div>
-
-    <!-- CONTENIDO PRINCIPAL -->
     <div class="app-container" id="main-content">
-      <img src="../imagenes/LOGO.png" class="logo" />
+      <img src="../imagenes/LOGO.png" class="logo" alt="Logo Gym App" />
 
       <h1 class="welcome" id="welcomeUser">Te estaba esperando</h1>
 
@@ -34,23 +29,17 @@
       <button class="btn-enter" onclick="goLogin()">Entrar</button>
     </div>
 
-    <script src="../js/firebase-config.js"></script>
     <script src="../js/motivacion.js"></script>
-    <script src="../js/welcome.js"></script>
-
-    <!-- PARTICULAS -->
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
-    <script src="../js/particles-config.js"></script>
-
-    <!-- CONTROL SPLASH -->
-    <script src="../js/splash.js"></script>
 
     <script>
+      function goLogin() {
+        window.location.href = "login.html";
+      }
+
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", () => {
           navigator.serviceWorker
             .register("/gym/service-worker.js")
-            .then(() => console.log("SW registrado desde html/index"))
             .catch((err) => console.log("Error SW", err));
         });
       }

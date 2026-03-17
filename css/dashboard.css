@@ -1,9 +1,14 @@
-/* DASHBOARD PAGE */
+/* =========================
+   DASHBOARD PAGE
+========================= */
 
 .dashboard-page {
   width: 100%;
   min-height: 100dvh;
   padding: 20px 12px 110px;
+  position: relative;
+  z-index: 2;
+  animation: pageFadeUp 0.35s ease;
 }
 
 .dashboard {
@@ -14,6 +19,10 @@
   z-index: 2;
 }
 
+/* =========================
+   HEADER
+========================= */
+
 .header {
   margin-bottom: 20px;
 }
@@ -23,13 +32,19 @@
   font-size: 2rem;
   font-weight: 800;
   color: #ffffff;
+  line-height: 1.1;
 }
 
 .welcome-text {
   margin-top: 8px;
   color: rgba(255, 255, 255, 0.82);
   font-size: 1rem;
+  line-height: 1.5;
 }
+
+/* =========================
+   CARDS GENERALES
+========================= */
 
 .dashboard-card {
   width: 100%;
@@ -37,18 +52,24 @@
   background: rgba(255, 255, 255, 0.92);
   color: #111;
   padding: 20px 16px;
-  border-radius: 20px;
+  border-radius: var(--radius-lg);
   margin-bottom: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22);
+  box-shadow: var(--shadow-soft);
   backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
   transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
+    transform var(--transition-main),
+    box-shadow var(--transition-main),
+    background var(--transition-main);
 }
 
 .dashboard-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.26);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-medium);
+}
+
+.dashboard-card:active {
+  transform: scale(0.985);
 }
 
 .dashboard-card h3 {
@@ -56,6 +77,7 @@
   font-size: 1.2rem;
   font-weight: 800;
   color: #111;
+  line-height: 1.2;
 }
 
 .dashboard-card p {
@@ -65,15 +87,24 @@
   color: #222;
 }
 
+/* =========================
+   CARD DE RACHA
+========================= */
+
 .streak-card {
   background: linear-gradient(135deg, #00c853, #00e676);
   color: white;
+  border: none;
 }
 
 .streak-card h3,
 .streak-card p {
   color: white;
 }
+
+/* =========================
+   GRID / BLOQUES
+========================= */
 
 .stats-grid {
   display: flex;
@@ -86,6 +117,10 @@
   margin-bottom: 0;
 }
 
+/* =========================
+   BOTON PRINCIPAL
+========================= */
+
 .btn-main {
   display: block;
   width: 100%;
@@ -95,23 +130,28 @@
   text-decoration: none;
   text-align: center;
   padding: 14px 18px;
-  border-radius: 14px;
+  border-radius: var(--radius-sm);
   font-weight: 700;
   transition:
-    transform 0.2s ease,
-    background 0.2s ease,
-    box-shadow 0.2s ease;
+    transform var(--transition-fast),
+    background var(--transition-fast),
+    box-shadow var(--transition-fast),
+    filter var(--transition-fast);
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
 }
 
 .btn-main:hover {
-  background: #222;
+  background: #1d1d1d;
   transform: translateY(-2px);
 }
 
 .btn-main:active {
   transform: scale(0.97);
 }
+
+/* =========================
+   MEMBRESIA
+========================= */
 
 .membership-card p {
   margin: 6px 0;
@@ -134,9 +174,16 @@
   color: #777;
 }
 
+/* =========================
+   CARD DIAS ASISTIDOS / RACHA
+========================= */
+
 #cardDiasAsistidos {
   position: relative;
-  transition: all 0.4s ease;
+  transition:
+    transform var(--transition-main),
+    box-shadow var(--transition-main),
+    border-color var(--transition-main);
   border: 2px solid transparent;
   overflow: hidden;
 }
@@ -186,6 +233,10 @@
   }
 }
 
+/* =========================
+   POPUP DE RACHA
+========================= */
+
 .racha-fire-popup {
   position: fixed;
   inset: 0;
@@ -194,7 +245,8 @@
   justify-content: center;
   align-items: center;
   z-index: 9999;
-  animation: fadeInPopup 0.4s ease;
+  animation: fadeInPopup 0.35s ease;
+  padding: 16px;
 }
 
 .racha-fire-popup.hidden {
@@ -202,18 +254,18 @@
 }
 
 .racha-fire-content {
-  width: 90%;
+  width: 100%;
   max-width: 340px;
   background: linear-gradient(145deg, #1f1f1f, #2a2a2a);
   color: white;
   text-align: center;
   padding: 24px 18px;
-  border-radius: 18px;
+  border-radius: var(--radius-lg);
   box-shadow:
     0 0 18px rgba(255, 120, 0, 0.35),
     0 0 35px rgba(255, 80, 0, 0.22);
   border: 1px solid rgba(255, 140, 0, 0.35);
-  animation: popupScale 0.45s ease;
+  animation: popupScale 0.42s ease;
 }
 
 .fire-emoji {
@@ -232,7 +284,7 @@
   margin: 0;
   font-size: 0.93rem;
   color: #f2f2f2;
-  line-height: 1.4;
+  line-height: 1.45;
 }
 
 @keyframes fadeInPopup {
@@ -246,7 +298,7 @@
 
 @keyframes popupScale {
   0% {
-    transform: scale(0.85);
+    transform: scale(0.88);
     opacity: 0;
   }
   100% {
@@ -263,4 +315,53 @@
   50% {
     transform: translateY(-4px) scale(1.08);
   }
+}
+
+/* =========================
+   AJUSTES RESPONSIVE
+========================= */
+
+@media (min-width: 768px) {
+  .dashboard-page {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 24px 18px 120px;
+  }
+
+  .header h2 {
+    font-size: 2.15rem;
+  }
+
+  .dashboard-card {
+    padding: 22px 18px;
+  }
+}
+
+.logout-btn {
+  width: 100%;
+  margin-top: 18px;
+  padding: 14px 16px;
+
+  border: none;
+  border-radius: 18px;
+
+  background: rgba(255, 60, 60, 0.12);
+  backdrop-filter: blur(12px);
+
+  color: #ff6b6b;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+
+  cursor: pointer;
+
+  transition: 0.25s ease;
+}
+
+.logout-btn:hover {
+  background: rgba(255, 60, 60, 0.22);
+}
+
+.logout-btn:active {
+  transform: scale(0.97);
 }

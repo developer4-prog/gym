@@ -7,6 +7,7 @@ const membresiaFin = document.getElementById("membresiaFin");
 const estadoMembresia = document.getElementById("estadoMembresia");
 const cardDiasAsistidos = document.getElementById("cardDiasAsistidos");
 const rachaFirePopup = document.getElementById("rachaFirePopup");
+const logoutBtn = document.getElementById("logoutBtn");
 
 function getStartOfWeek(date) {
   const d = new Date(date);
@@ -29,7 +30,7 @@ function getStartOfMonth(date) {
 }
 
 function getEndOfMonth(date) {
-  return new Date(date.getFullYear(), date.getMonth() + 1, 0);
+  return new Date(date.getFullYear(), date.getMonth() + 1, 0, 23, 59, 59, 999);
 }
 
 function convertirFechaDesdeId(fechaId) {
@@ -59,8 +60,6 @@ function calcularEstadoMembresia(fechaFin) {
 }
 
 function cargarResumenAsistencias(uid) {
-  /* CARGAR DATOS DEL USUARIO */
-
   db.collection("usuarios")
     .doc(uid)
     .get()
@@ -95,8 +94,6 @@ function cargarResumenAsistencias(uid) {
       console.error("Error cargando datos del usuario:", error);
     });
 
-  /* CONTAR ASISTENCIAS */
-
   const hoy = new Date();
   const inicioSemana = getStartOfWeek(hoy);
   const finSemana = getEndOfWeek(hoy);
@@ -112,8 +109,7 @@ function cargarResumenAsistencias(uid) {
     .get()
     .then((snapshot) => {
       snapshot.forEach((doc) => {
-        const fechaId = doc.id;
-        const fechaAsistencia = convertirFechaDesdeId(fechaId);
+        const fechaAsistencia = convertirFechaDesdeId(doc.id);
 
         if (!fechaAsistencia) return;
 
@@ -133,6 +129,7 @@ function cargarResumenAsistencias(uid) {
       if (diasAsistidosMes) {
         diasAsistidosMes.textContent = `Este mes: ${totalMes}`;
       }
+
       if (totalMes >= 20 && rachaFirePopup) {
         rachaFirePopup.classList.remove("hidden");
 
@@ -140,6 +137,7 @@ function cargarResumenAsistencias(uid) {
           rachaFirePopup.classList.add("hidden");
         }, 3000);
       }
+
       if (cardDiasAsistidos) {
         cardDiasAsistidos.classList.remove(
           "racha-leve",
@@ -161,11 +159,24 @@ function cargarResumenAsistencias(uid) {
     });
 }
 
-/* DETECTAR USUARIO LOGEADO */
-
 auth.onAuthStateChanged((user) => {
   if (user) {
     console.log("Usuario autenticado:", user.uid);
     cargarResumenAsistencias(user.uid);
+  } else {
+    window.location.href = "login.html";
   }
 });
+
+if (logoutBtn) {
+  logoutBtn.addEventListener("click", async () => {
+    try {
+      await auth.signOut();
+      localStorage.removeItem("rememberSessionSelected");
+      window.location.href = "login.html";
+    } catch (error) {
+      console.error("Error al cerrar sesión:", error);
+      alert("No se pudo cerrar sesión");
+    }
+  });
+}
