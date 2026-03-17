@@ -28,7 +28,8 @@ async function cargarAsistenciasCliente() {
   const resumenAsistencias = document.getElementById("resumenAsistencias");
 
   if (!uid) {
-    lista.innerHTML = "<p>No se recibió el UID del cliente.</p>";
+    lista.innerHTML =
+      '<p class="empty-state">No se recibió el UID del cliente.</p>';
     resumenAsistencias.textContent = "Error al cargar datos.";
     return;
   }
@@ -37,7 +38,7 @@ async function cargarAsistenciasCliente() {
     const docUsuario = await db.collection("usuarios").doc(uid).get();
 
     if (!docUsuario.exists) {
-      lista.innerHTML = "<p>El cliente no existe.</p>";
+      lista.innerHTML = '<p class="empty-state">El cliente no existe.</p>';
       resumenAsistencias.textContent = "No se encontró información.";
       return;
     }
@@ -59,7 +60,8 @@ async function cargarAsistenciasCliente() {
     if (snapshot.empty) {
       resumenAsistencias.textContent =
         "Este cliente aún no tiene asistencias registradas.";
-      lista.innerHTML = "<p>No hay asistencias registradas.</p>";
+      lista.innerHTML =
+        '<p class="empty-state">No hay asistencias registradas.</p>';
       return;
     }
 
@@ -67,21 +69,24 @@ async function cargarAsistenciasCliente() {
 
     snapshot.forEach((doc) => {
       const asistencia = doc.data();
+      const fechaMostrada = formatearFecha(asistencia.fecha || doc.id);
+      const horaMostrada = asistencia.horaEntrada || "Hora no registrada";
 
       const card = document.createElement("div");
-      card.classList.add("cliente-card");
+      card.classList.add("cliente-card", "asistencia-card");
 
       card.innerHTML = `
-        <h3>✅ ${formatearFecha(asistencia.fecha || doc.id)}</h3>
-        <p><strong>Hora:</strong> ${asistencia.horaEntrada || "No registrada"}</p>
-        <p><strong>Estado:</strong> ${asistencia.estado || "asistio"}</p>
+        <div class="asistencia-top">
+          <h3>✅ ${fechaMostrada}</h3>
+        </div>
+        <p class="asistencia-hora">${horaMostrada}</p>
       `;
 
       lista.appendChild(card);
     });
   } catch (error) {
     console.error("Error cargando asistencias del cliente:", error);
-    lista.innerHTML = "<p>Error cargando asistencias.</p>";
+    lista.innerHTML = '<p class="empty-state">Error cargando asistencias.</p>';
     resumenAsistencias.textContent = "Ocurrió un error al consultar los datos.";
   }
 }

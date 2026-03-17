@@ -23,19 +23,19 @@
       <p class="subtitle" id="resumenAsistencias">Cargando asistencias...</p>
 
       <div id="lista-asistencias" class="clientes-grid">
-        <p>Cargando asistencias...</p>
+        <p class="empty-state">Cargando asistencias...</p>
       </div>
 
       <a href="admin-clientes.html" class="btn-volver">← Volver a clientes</a>
     </div>
 
-    <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
     <script src="../js/firebase-config.js"></script>
     <script src="../js/asistencias-cliente.js"></script>
+
     <script>
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", () => {
