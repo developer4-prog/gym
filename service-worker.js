@@ -1,9 +1,10 @@
-const CACHE_NAME = "gym-app-v4";
+const CACHE_NAME = "gym-app-v8";
 
 const urlsToCache = [
   "/gym/",
   "/gym/index.html",
   "/gym/html/index.html",
+  "/gym/html/login.html",
   "/gym/html/dashboard.html",
   "/gym/html/historial.html",
   "/gym/html/workout.html",
@@ -21,14 +22,12 @@ const urlsToCache = [
 // INSTALAR
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(urlsToCache);
-    }),
+    caches.open(CACHE_NAME).then((cache) => cache.addAll(urlsToCache)),
   );
   self.skipWaiting();
 });
 
-// ACTIVAR Y BORRAR CACHÉS VIEJAS
+// ACTIVAR
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys().then((cacheNames) =>
@@ -49,8 +48,9 @@ self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
 
   const req = event.request;
+  const url = new URL(req.url);
 
-  // Para páginas HTML: intenta red primero, luego caché
+  // HTML: red primero
   if (req.mode === "navigate") {
     event.respondWith(
       fetch(req)
@@ -68,7 +68,21 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  // Para css, js, imágenes: caché primero
+  // CSS y JS: red primero, fallback a caché
+  if (url.pathname.endsWith(".css") || url.pathname.endsWith(".js")) {
+    event.respondWith(
+      fetch(req)
+        .then((networkResponse) => {
+          const copy = networkResponse.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(req, copy));
+          return networkResponse;
+        })
+        .catch(() => caches.match(req)),
+    );
+    return;
+  }
+
+  // Imágenes: caché primero
   event.respondWith(
     caches.match(req).then((cachedResponse) => {
       if (cachedResponse) return cachedResponse;
