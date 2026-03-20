@@ -604,13 +604,14 @@
 .producto-imagen-wrap {
   width: 100%;
   height: 230px;
-  background: #fff;
+  background: #ffffff;
   border-radius: 18px;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 14px;
+  margin-bottom: 14px;
 }
 
 .producto-imagen {
@@ -620,6 +621,7 @@
   object-position: center;
   display: block;
 }
+
 .producto-card h3 {
   margin: 0 0 8px;
 }

@@ -18,6 +18,25 @@ function formatearPrecio(valor) {
   return `$${Number(valor || 0).toFixed(2)}`;
 }
 
+function obtenerImagenProducto(nombre) {
+  const nombreNormalizado = (nombre || "").toLowerCase().trim();
+
+  if (nombreNormalizado.includes("agua")) return "/imagenes/agua.jpg";
+  if (nombreNormalizado.includes("gatorade")) return "/imagenes/gatorade.jpg";
+  if (nombreNormalizado.includes("powerade")) return "/imagenes/powerade.jpg";
+  if (
+    nombreNormalizado.includes("té") ||
+    nombreNormalizado.includes("te helado") ||
+    nombreNormalizado === "te" ||
+    nombreNormalizado.includes("te ")
+  ) {
+    return "/imagenes/te.jpg";
+  }
+  if (nombreNormalizado.includes("monster")) return "/imagenes/monster.jpg";
+
+  return "/imagenes/icon-192.png";
+}
+
 async function cargarResumenVentasHoy() {
   const fechaHoy = obtenerFechaHoyLocal();
   const cantidadEl = document.getElementById("ventasHoyCantidad");
@@ -48,7 +67,6 @@ async function cargarResumenVentasHoy() {
 async function venderProducto(productoId, boton) {
   try {
     boton.disabled = true;
-    const textoOriginal = boton.textContent;
     boton.textContent = "Vendiendo...";
 
     await db.runTransaction(async (transaction) => {
@@ -103,7 +121,7 @@ async function cargarProductos() {
 
     if (snapshot.empty) {
       lista.innerHTML =
-        '<p class="empty-state">No hay productos activos registrados.</p>';
+        '<p class="empty-state">No hay productos registrados.</p>';
       return;
     }
 
@@ -112,16 +130,24 @@ async function cargarProductos() {
       const productoId = doc.id;
       const stock = Number(producto.stock || 0);
       const sinStock = stock <= 0;
+      const nombreProducto = producto.nombre || "Producto";
+      const imagenProducto = obtenerImagenProducto(nombreProducto);
 
       const card = document.createElement("div");
       card.classList.add("producto-card");
 
       card.innerHTML = `
         <div class="producto-imagen-wrap">
-          <img src="${producto.imagen || ""}" alt="${producto.nombre || "Producto"}" class="producto-imagen" />
+          <img
+            src="${imagenProducto}"
+            alt="${nombreProducto}"
+            class="producto-imagen"
+            loading="lazy"
+            onerror="this.src='/imagenes/icon-192.png'"
+          />
         </div>
 
-        <h3>${producto.nombre || "Producto"}</h3>
+        <h3>${nombreProducto}</h3>
         <p class="producto-precio">${formatearPrecio(producto.precio)}</p>
         <p class="producto-stock">Stock: ${stock}</p>
 
@@ -143,7 +169,70 @@ async function cargarProductos() {
   }
 }
 
+async function exportarVentasHoy() {
+  const fechaHoy = obtenerFechaHoyLocal();
+  const boton = document.getElementById("btnExportarVentasHoy");
+
+  try {
+    boton.disabled = true;
+    boton.textContent = "Exportando...";
+
+    const snapshot = await db
+      .collection("ventas")
+      .where("fecha", "==", fechaHoy)
+      .orderBy("timestamp", "asc")
+      .get();
+
+    if (snapshot.empty) {
+      alert("No hay ventas registradas hoy.");
+      return;
+    }
+
+    let total = 0;
+    let csv = "\uFEFF"; // BOM para que Excel lea bien UTF-8
+    csv += "Fecha;Hora;Producto;Precio\n";
+
+    snapshot.forEach((doc) => {
+      const venta = doc.data();
+      const fecha = venta.fecha || "";
+      const hora = venta.hora || "";
+      const nombre = (venta.nombre || "Producto").replace(/;/g, ",");
+      const precio = Number(venta.precio || 0);
+
+      total += precio;
+      csv += `${fecha};${hora};${nombre};${precio.toFixed(2)}\n`;
+    });
+
+    csv += `\n`;
+    csv += `Total ventas;${snapshot.size}\n`;
+    csv += `Total caja;${total.toFixed(2)}\n`;
+
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+
+    const enlace = document.createElement("a");
+    enlace.href = url;
+    enlace.download = `ventas-${fechaHoy}.csv`;
+    document.body.appendChild(enlace);
+    enlace.click();
+    document.body.removeChild(enlace);
+
+    URL.revokeObjectURL(url);
+  } catch (error) {
+    console.error("Error exportando ventas:", error);
+    alert("No se pudieron exportar las ventas.");
+  } finally {
+    boton.disabled = false;
+    boton.textContent = "Exportar ventas de hoy";
+  }
+}
+
 document.addEventListener("DOMContentLoaded", async () => {
   await cargarResumenVentasHoy();
   await cargarProductos();
+
+  const btnExportarVentasHoy = document.getElementById("btnExportarVentasHoy");
+  if (btnExportarVentasHoy) {
+    btnExportarVentasHoy.addEventListener("click", exportarVentasHoy);
+  }
 });
