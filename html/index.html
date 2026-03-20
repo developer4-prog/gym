@@ -29,20 +29,13 @@
       <button class="btn-enter" onclick="goLogin()">Entrar</button>
     </div>
 
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+    <script src="../js/firebase-config.js"></script>
     <script src="../js/motivacion.js"></script>
-
-    <script>
-      function goLogin() {
-        window.location.href = "login.html";
-      }
-
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-          navigator.serviceWorker
-            .register("/gym/service-worker.js")
-            .catch((err) => console.log("Error SW", err));
-        });
-      }
-    </script>
+    <script src="../js/index-session-check.js"></script>
+    <script src="../js/sw-register.js"></script>
   </body>
 </html>

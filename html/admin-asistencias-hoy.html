@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="manifest" href="../manifest.json" />
+    <meta name="theme-color" content="#111111" />
+    <link rel="icon" href="../imagenes/icon-192.png" />
+    <link rel="apple-touch-icon" href="../imagenes/icon-192.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-title" content="Gym App" />
+
+    <title>Asistencias</title>
+
+    <link rel="stylesheet" href="../css/global.css" />
+    <link rel="stylesheet" href="../css/admin.css" />
+  </head>
+
+  <body>
+    <div class="admin-container">
+      <h1>Asistencias</h1>
+      <p class="subtitle" id="resumenAsistenciasHoy">Cargando asistencias...</p>
+
+      <div class="filtros-asistencia">
+        <div class="campo-fecha">
+          <label for="fechaInicio">Fecha inicio</label>
+          <input type="date" id="fechaInicio" />
+        </div>
+
+        <div class="campo-fecha">
+          <label for="fechaFin">Fecha fin</label>
+          <input type="date" id="fechaFin" />
+        </div>
+      </div>
+
+      <div class="admin-actions admin-actions-wrap">
+        <button id="btnHoy" class="btn-exportar">Ver hoy</button>
+        <button id="btnBuscarRango" class="btn-exportar">Buscar rango</button>
+        <button id="btnExportarHoy" class="btn-exportar">Exportar CSV</button>
+      </div>
+
+      <div id="lista-asistencias-hoy" class="clientes-grid">
+        <p class="empty-state">Cargando asistencias...</p>
+      </div>
+
+      <a href="admin.html" class="btn-volver">← Volver al panel admin</a>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+    <script src="../js/firebase-config.js"></script>
+    <script src="../js/admin-asistencias-hoy.js"></script>
+
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("/gym/service-worker.js")
+            .then(() => console.log("Service Worker registrado"))
+            .catch((err) =>
+              console.log("Error registrando Service Worker", err),
+            );
+        });
+      }
+    </script>
+  </body>
+</html>

@@ -310,3 +310,361 @@
   text-align: center;
   padding: 18px 10px;
 }
+
+.admin-actions {
+  display: flex;
+  justify-content: center;
+  margin: 18px 0 22px;
+}
+
+.admin-actions {
+  display: flex;
+  justify-content: center;
+  margin: 18px 0 22px;
+}
+
+.btn-exportar {
+  width: 100%;
+  max-width: 340px;
+  border: none;
+  border-radius: 14px;
+  padding: 14px 18px;
+  font-size: 0.96rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    transform 0.18s ease,
+    opacity 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.btn-exportar:hover {
+  transform: translateY(-1px);
+}
+
+.btn-exportar:active {
+  transform: scale(0.98);
+}
+
+.btn-exportar:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.asistencia-card-compacta {
+  padding: 16px 18px;
+  border-radius: 16px;
+}
+
+.asistencia-header-compacta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.asistencia-header-compacta h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.25;
+}
+
+.hora-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.correo-compacto {
+  margin: 0 0 10px;
+  font-size: 0.93rem;
+  line-height: 1.35;
+  word-break: break-word;
+  opacity: 0.92;
+}
+
+.asistencia-meta-compacta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 0.9rem;
+  opacity: 0.95;
+}
+
+.filtros-asistencia {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  margin: 18px 0 18px;
+}
+
+.campo-fecha {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.campo-fecha label {
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.campo-fecha input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  font-size: 0.95rem;
+}
+
+.admin-actions-wrap {
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.admin-actions-wrap .btn-exportar {
+  max-width: 220px;
+}
+
+.asistencia-card-compacta {
+  padding: 16px 18px;
+  border-radius: 16px;
+}
+
+.asistencia-header-compacta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.asistencia-header-compacta h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.25;
+}
+
+.hora-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.correo-compacto {
+  margin: 0 0 10px;
+  font-size: 0.93rem;
+  line-height: 1.35;
+  word-break: break-word;
+  opacity: 0.92;
+}
+
+.asistencia-meta-compacta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 0.9rem;
+  opacity: 0.95;
+}
+
+@media (min-width: 700px) {
+  .filtros-asistencia {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.cliente-card-admin {
+  position: relative;
+}
+
+.cliente-card-top {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 6px;
+}
+
+.btn-menu-cliente {
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background 0.18s ease,
+    transform 0.18s ease;
+}
+
+.btn-menu-cliente:hover {
+  background: rgba(255, 255, 255, 0.14);
+  transform: translateY(-1px);
+}
+
+.btn-menu-cliente:active {
+  transform: scale(0.97);
+}
+
+.cliente-menu {
+  position: absolute;
+  top: 44px;
+  right: 0;
+  min-width: 170px;
+  background: rgba(20, 20, 20, 0.96);
+  border-radius: 12px;
+  padding: 8px;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
+  z-index: 20;
+}
+
+.btn-eliminar-cliente {
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  padding: 11px 12px;
+  background: rgba(255, 77, 109, 0.12);
+  color: #ff6b81;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background 0.18s ease,
+    transform 0.18s ease,
+    opacity 0.18s ease;
+}
+
+.btn-eliminar-cliente:hover {
+  background: rgba(255, 77, 109, 0.2);
+}
+
+.btn-eliminar-cliente:active {
+  transform: scale(0.98);
+}
+
+.btn-eliminar-cliente:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.ventas-resumen {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin: 24px 0 20px;
+}
+
+.venta-resumen-card {
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 16px;
+  padding: 18px 16px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+
+.venta-resumen-label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.92rem;
+  opacity: 0.82;
+}
+
+.venta-resumen-card strong {
+  font-size: 1.4rem;
+}
+
+.productos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-top: 25px;
+}
+
+.producto-card {
+  background: rgba(0, 0, 0, 0.62);
+  border-radius: 18px;
+  padding: 18px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+
+.producto-imagen-wrap {
+  width: 100%;
+  height: 230px;
+  background: #fff;
+  border-radius: 18px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px;
+}
+
+.producto-imagen {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+}
+.producto-card h3 {
+  margin: 0 0 8px;
+}
+
+.producto-precio {
+  margin: 0 0 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #00e676;
+}
+
+.producto-stock {
+  margin: 0 0 14px;
+  opacity: 0.88;
+}
+
+.btn-vender-producto {
+  width: 100%;
+  border: none;
+  border-radius: 12px;
+  padding: 12px;
+  background: linear-gradient(135deg, #00c853, #00e676);
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    transform 0.18s ease,
+    opacity 0.18s ease;
+}
+
+.btn-vender-producto:hover {
+  transform: translateY(-1px);
+}
+
+.btn-vender-producto:active {
+  transform: scale(0.98);
+}
+
+.btn-vender-producto:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+@media (max-width: 700px) {
+  .ventas-resumen {
+    grid-template-columns: 1fr;
+  }
+}

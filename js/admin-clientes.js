@@ -97,6 +97,63 @@ function calcularEstadoMembresia(membresiaFin) {
   return { texto: "Activa", clase: "activa" };
 }
 
+function cerrarTodosLosMenus() {
+  document.querySelectorAll(".cliente-menu").forEach((menu) => {
+    menu.classList.add("oculto");
+  });
+}
+
+async function eliminarCliente(uid, nombreCliente, card) {
+  const confirmado = confirm(
+    `¿Seguro que deseas eliminar a ${nombreCliente}?\n\nSe borrarán también todas sus asistencias registradas.`,
+  );
+
+  if (!confirmado) return;
+
+  const botonEliminar = card.querySelector(".btn-eliminar-cliente");
+  const textoOriginal = botonEliminar
+    ? botonEliminar.textContent
+    : "Eliminar cliente";
+
+  try {
+    if (botonEliminar) {
+      botonEliminar.disabled = true;
+      botonEliminar.textContent = "Eliminando...";
+    }
+
+    const asistenciasRef = db
+      .collection("usuarios")
+      .doc(uid)
+      .collection("asistencias");
+
+    const asistenciasSnapshot = await asistenciasRef.get();
+
+    for (const asistenciaDoc of asistenciasSnapshot.docs) {
+      await asistenciaDoc.ref.delete();
+    }
+
+    await db.collection("usuarios").doc(uid).delete();
+
+    card.remove();
+
+    const lista = document.getElementById("clientes-lista");
+    const cardsVisibles = lista.querySelectorAll(".cliente-card");
+
+    if (!cardsVisibles.length) {
+      lista.innerHTML = "<p>No hay clientes registrados.</p>";
+    }
+
+    alert(`Cliente eliminado: ${nombreCliente}`);
+  } catch (error) {
+    console.error("Error eliminando cliente:", error);
+    alert("No se pudo eliminar el cliente.");
+    if (botonEliminar) {
+      botonEliminar.disabled = false;
+      botonEliminar.textContent = textoOriginal;
+    }
+  }
+}
+
 async function cargarClientes() {
   const lista = document.getElementById("clientes-lista");
 
@@ -114,9 +171,21 @@ async function cargarClientes() {
         const estadoMembresia = calcularEstadoMembresia(user.membresiaFin);
 
         const card = document.createElement("div");
-        card.classList.add("cliente-card");
+        card.classList.add("cliente-card", "cliente-card-admin");
 
         card.innerHTML = `
+          <div class="cliente-card-top">
+            <button class="btn-menu-cliente" type="button" aria-label="Más opciones">
+              ⋮
+            </button>
+
+            <div class="cliente-menu oculto">
+              <button class="btn-eliminar-cliente" type="button">
+                Eliminar cliente
+              </button>
+            </div>
+          </div>
+
           <h3>${nombreCliente}</h3>
 
           <p id="estado-membresia-${uid}" class="estado-membresia ${estadoMembresia.clase}">
@@ -151,26 +220,49 @@ async function cargarClientes() {
           ".btn-toggle-membresia",
         );
         const cajaMembresia = card.querySelector(`#membresia-box-${uid}`);
+        const botonGuardarMembresia = card.querySelector(
+          ".btn-guardar-membresia",
+        );
+        const botonAsistencia = card.querySelector(".btn-asistencia");
+        const botonVerAsistencias = card.querySelector(".btn-ver-asistencias");
+        const botonMenu = card.querySelector(".btn-menu-cliente");
+        const menuCliente = card.querySelector(".cliente-menu");
+        const botonEliminarCliente = card.querySelector(
+          ".btn-eliminar-cliente",
+        );
 
         botonToggleMembresia.addEventListener("click", () => {
           cajaMembresia.classList.toggle("oculto");
         });
 
-        const botonGuardarMembresia = card.querySelector(
-          ".btn-guardar-membresia",
-        );
         botonGuardarMembresia.addEventListener("click", () => {
           guardarMembresia(uid, nombreCliente);
         });
 
-        const botonAsistencia = card.querySelector(".btn-asistencia");
         botonAsistencia.addEventListener("click", () => {
           registrarAsistencia(uid, nombreCliente);
         });
 
-        const botonVerAsistencias = card.querySelector(".btn-ver-asistencias");
         botonVerAsistencias.addEventListener("click", () => {
           verAsistencias(uid);
+        });
+
+        botonMenu.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const estabaOculto = menuCliente.classList.contains("oculto");
+          cerrarTodosLosMenus();
+          if (estabaOculto) {
+            menuCliente.classList.remove("oculto");
+          }
+        });
+
+        menuCliente.addEventListener("click", (e) => {
+          e.stopPropagation();
+        });
+
+        botonEliminarCliente.addEventListener("click", async () => {
+          cerrarTodosLosMenus();
+          await eliminarCliente(uid, nombreCliente, card);
         });
 
         lista.appendChild(card);
@@ -185,6 +277,10 @@ async function cargarClientes() {
     lista.innerHTML = "<p>Error cargando clientes.</p>";
   }
 }
+
+document.addEventListener("click", () => {
+  cerrarTodosLosMenus();
+});
 
 cargarClientes();
 
