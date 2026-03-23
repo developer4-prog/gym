@@ -36,20 +36,6 @@
       <button class="btn-save">Guardar entrenamiento</button>
     </div>
 
-    <!-- cargar Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-
-    <!-- Tu configuración -->
-    <script src="../js/firebase-config.js"></script>
-
-    <!-- Tu JS de funcionalidad -->
-    <script src="../js/workout.js"></script>
-    <script src="../js/historial.js"></script>
-
-    <!-- MENU INFERIOR -->
-
     <div class="bottom-nav">
       <a href="dashboard.html" class="nav-item">🏠</a>
       <a href="historial.html" class="nav-item">📅</a>
@@ -57,15 +43,14 @@
       <a href="tienda.html" class="nav-item">🛒</a>
       <a href="gym-info.html" class="nav-item">🏋️</a>
     </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+    <script src="../js/firebase-config.js"></script>
+    <script src="../js/workout.js"></script>
+
+    <script src="../js/sw-update.js"></script>
   </body>
-  <script>
-    if ("serviceWorker" in navigator) {
-      window.addEventListener("load", () => {
-        navigator.serviceWorker
-          .register("/gym/service-worker.js")
-          .then(() => console.log("Service Worker registrado"))
-          .catch((err) => console.log("Error registrando Service Worker", err));
-      });
-    }
-  </script>
 </html>

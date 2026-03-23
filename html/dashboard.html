@@ -1,15 +1,15 @@
 <!doctype html>
 <html lang="es">
   <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="manifest" href="../manifest.json" />
-<meta name="theme-color" content="#111111" />
-<link rel="icon" href="../imagenes/icon-192.png" />
-<link rel="apple-touch-icon" href="../imagenes/icon-192.png" />
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="black" />
-<meta name="apple-mobile-web-app-title" content="Gym App" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="manifest" href="../manifest.json" />
+    <meta name="theme-color" content="#111111" />
+    <link rel="icon" href="../imagenes/icon-192.png" />
+    <link rel="apple-touch-icon" href="../imagenes/icon-192.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-title" content="Gym App" />
 
     <title>Dashboard</title>
 
@@ -26,77 +26,69 @@
         </div>
 
         <div class="stats-grid">
-  <div class="dashboard-card streak-card stat-card">
-    <h3>🔥 Asistencia semanal</h3>
-    <p id="rachaActual">0 días esta semana</p>
-  </div>
+          <div class="dashboard-card streak-card stat-card">
+            <h3>🔥 Asistencia semanal</h3>
+            <p id="rachaActual">0 días esta semana</p>
+          </div>
 
-  <div class="dashboard-card stat-card" id="cardDiasAsistidos">
-    <h3>🗓️ Días asistidos</h3>
-    <p id="diasAsistidosMes">Este mes: 0</p>
-  </div>
-</div>
+          <div class="dashboard-card stat-card" id="cardDiasAsistidos">
+            <h3>🗓️ Días asistidos</h3>
+            <p id="diasAsistidosMes">Este mes: 0</p>
+          </div>
+        </div>
 
+        <div class="dashboard-card">
+          <h3>💪 Registrar entrenamiento</h3>
+          <a href="workout.html" class="btn-main">Registrar músculos</a>
+        </div>
 
-<div class="dashboard-card">
-  <h3>💪 Registrar entrenamiento</h3>
-  <a href="workout.html" class="btn-main">Registrar músculos</a>
-</div>
+        <div class="dashboard-card">
+          <h3>📊 Historial</h3>
+          <a href="historial.html" class="btn-main">Ver historial</a>
+        </div>
 
-<div class="dashboard-card">
-  <h3>📊 Historial</h3>
-  <a href="historial.html" class="btn-main">Ver historial</a>
-</div>
+        <div class="dashboard-card">
+          <h3>📚 Rutinas</h3>
+          <p>Consulta ejercicios y ejecución correcta.</p>
 
-<div class="dashboard-card">
-  <h3>📚 Rutinas</h3>
-  <p>Consulta ejercicios y ejecución correcta.</p>
+          <a
+            href="https://musclewiki.com"
+            target="_blank"
+            class="btn-main"
+            rel="noopener noreferrer"
+          >
+            Ver rutinas
+          </a>
+        </div>
 
-  <a
-    href="https://musclewiki.com"
-    target="_blank"
-    class="btn-main"
-    rel="noopener noreferrer"
-  >
-    Ver rutinas
-  </a>
-</div>
-<button id="logoutBtn" class="logout-btn">Cerrar sesión</button>
-</div>
+        <button id="logoutBtn" class="logout-btn">Cerrar sesión</button>
+      </div>
 
-<div id="rachaFirePopup" class="racha-fire-popup hidden">
-  <div class="racha-fire-content">
-    <div class="fire-emoji">🔥</div>
-    <h3>¡Racha imparable!</h3>
-    <p>Has asistido más de 20 días este mes. Sigue así 💪</p>
-  </div>
-</div>
+      <div id="rachaFirePopup" class="racha-fire-popup hidden">
+        <div class="racha-fire-content">
+          <div class="fire-emoji">🔥</div>
+          <h3>¡Racha imparable!</h3>
+          <p>Has asistido más de 20 días este mes. Sigue así 💪</p>
+        </div>
+      </div>
 
-    <div class="bottom-nav">
-      <a href="dashboard.html" class="nav-item active">🏠</a>
-      <a href="historial.html" class="nav-item">📅</a>
-      <a href="workout.html" class="nav-item">💪</a>
-      <a href="tienda.html" class="nav-item">🛒</a>
-      <a href="gym-info.html" class="nav-item">🏋️</a>
+      <div class="bottom-nav">
+        <a href="dashboard.html" class="nav-item active">🏠</a>
+        <a href="historial.html" class="nav-item">📅</a>
+        <a href="workout.html" class="nav-item">💪</a>
+        <a href="tienda.html" class="nav-item">🛒</a>
+        <a href="gym-info.html" class="nav-item">🏋️</a>
+      </div>
     </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+    <script src="../js/firebase-config.js"></script>
+    <script src="../js/cliente-dashboard.js"></script>
+
+    <script src="../js/sw-register.js"></script>
+    <script src="../js/sw-update.js"></script>
   </body>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-
-  <script src="../js/firebase-config.js"></script>
-  <script src="../js/cliente-dashboard.js"></script>
-  <script>
-  if ("serviceWorker" in navigator) {
-    window.addEventListener("load", () => {
-      navigator.serviceWorker
-        .register("/gym/service-worker.js")
-        .then(() => console.log("Service Worker registrado"))
-        .catch((err) => console.log("Error registrando Service Worker", err));
-    });
-  }
-</script>
-<script src="../js/sw-register.js"></script>
-
-
 </html>
