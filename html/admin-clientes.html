@@ -45,17 +45,5 @@
     <script src="../js/firebase-config.js"></script>
     <script src="../js/admin-clientes.js"></script>
     <script src="../js/sw-update.js"></script>
-    <script>
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-          navigator.serviceWorker
-            .register("/gym/service-worker.js")
-            .then(() => console.log("Service Worker registrado"))
-            .catch((err) =>
-              console.log("Error registrando Service Worker", err),
-            );
-        });
-      }
-    </script>
   </body>
 </html>

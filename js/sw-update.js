@@ -1,6 +1,10 @@
 let newWorker;
 
 function crearBannerUpdate() {
+  if (document.getElementById("update-banner")) {
+    return document.getElementById("update-banner");
+  }
+
   const banner = document.createElement("div");
   banner.id = "update-banner";
   banner.style.position = "fixed";
@@ -15,10 +19,12 @@ function crearBannerUpdate() {
   banner.style.zIndex = "9999";
   banner.style.justifyContent = "space-between";
   banner.style.alignItems = "center";
+  banner.style.gap = "12px";
+  banner.style.boxShadow = "0 10px 30px rgba(0, 0, 0, 0.35)";
 
   banner.innerHTML = `
     <span>Nueva versión disponible</span>
-    <button id="update-now-btn" style="padding:8px 14px;border:none;border-radius:8px;font-weight:700;">
+    <button id="update-now-btn" style="padding:8px 14px;border:none;border-radius:8px;font-weight:700;cursor:pointer;">
       Actualizar
     </button>
   `;
@@ -36,31 +42,38 @@ function crearBannerUpdate() {
 
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", async () => {
-    const banner = crearBannerUpdate();
+    try {
+      const banner = crearBannerUpdate();
 
-    const registration = await navigator.serviceWorker.register("/gym/sw.js");
+      const registration = await navigator.serviceWorker.register(
+        "/gym/service-worker.js",
+      );
 
-    if (registration.waiting) {
-      newWorker = registration.waiting;
-      banner.style.display = "flex";
-    }
+      if (registration.waiting) {
+        newWorker = registration.waiting;
+        banner.style.display = "flex";
+      }
 
-    registration.addEventListener("updatefound", () => {
-      const installing = registration.installing;
+      registration.addEventListener("updatefound", () => {
+        const installing = registration.installing;
+        if (!installing) return;
 
-      installing.addEventListener("statechange", () => {
-        if (
-          installing.state === "installed" &&
-          navigator.serviceWorker.controller
-        ) {
-          newWorker = installing;
-          banner.style.display = "flex";
-        }
+        installing.addEventListener("statechange", () => {
+          if (
+            installing.state === "installed" &&
+            navigator.serviceWorker.controller
+          ) {
+            newWorker = installing;
+            banner.style.display = "flex";
+          }
+        });
       });
-    });
 
-    navigator.serviceWorker.addEventListener("controllerchange", () => {
-      window.location.reload();
-    });
+      navigator.serviceWorker.addEventListener("controllerchange", () => {
+        window.location.reload();
+      });
+    } catch (error) {
+      console.error("Error registrando el Service Worker:", error);
+    }
   });
 }

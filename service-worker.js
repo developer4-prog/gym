@@ -1,4 +1,4 @@
-const CACHE_NAME = "gym-app-v10.3";
+const CACHE_NAME = "gym-app-v10.4";
 const BASE_PATH = self.location.pathname.replace(/\/service-worker\.js$/, "");
 
 const urlsToCache = [
@@ -87,4 +87,10 @@ self.addEventListener("fetch", (event) => {
       });
     }),
   );
+});
+
+self.addEventListener("message", (event) => {
+  if (event.data && event.data.type === "SKIP_WAITING") {
+    self.skipWaiting();
+  }
 });

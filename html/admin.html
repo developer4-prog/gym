@@ -48,19 +48,6 @@
         </a>
       </div>
     </div>
-
-    <script>
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-          navigator.serviceWorker
-            .register("/gym/service-worker.js")
-            .then(() => console.log("Service Worker registrado"))
-            .catch((err) =>
-              console.log("Error registrando Service Worker", err),
-            );
-        });
-      }
-    </script>
     <script src="../js/sw-update.js"></script>
   </body>
 </html>
