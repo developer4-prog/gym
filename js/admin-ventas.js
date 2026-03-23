@@ -21,20 +21,20 @@ function formatearPrecio(valor) {
 function obtenerImagenProducto(nombre) {
   const nombreNormalizado = (nombre || "").toLowerCase().trim();
 
-  if (nombreNormalizado.includes("agua")) return "/imagenes/agua.jpg";
-  if (nombreNormalizado.includes("gatorade")) return "/imagenes/gatorade.jpg";
-  if (nombreNormalizado.includes("powerade")) return "/imagenes/powerade.jpg";
+  if (nombreNormalizado.includes("agua")) return "../imagenes/agua.jpg";
+  if (nombreNormalizado.includes("gatorade")) return "../imagenes/gatorade.jpg";
+  if (nombreNormalizado.includes("powerade")) return "../imagenes/powerade.jpg";
   if (
     nombreNormalizado.includes("té") ||
     nombreNormalizado.includes("te helado") ||
     nombreNormalizado === "te" ||
     nombreNormalizado.includes("te ")
   ) {
-    return "/imagenes/te.jpg";
+    return "../imagenes/te.jpg";
   }
-  if (nombreNormalizado.includes("monster")) return "/imagenes/monster.jpg";
+  if (nombreNormalizado.includes("monster")) return "../imagenes/monster.jpg";
 
-  return "/imagenes/icon-192.png";
+  return "../imagenes/icon-192.png";
 }
 
 async function cargarResumenVentasHoy() {
