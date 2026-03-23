@@ -21,20 +21,22 @@ function formatearPrecio(valor) {
 function obtenerImagenProducto(nombre) {
   const nombreNormalizado = (nombre || "").toLowerCase().trim();
 
-  if (nombreNormalizado.includes("agua")) return "../imagenes/agua.jpg";
-  if (nombreNormalizado.includes("gatorade")) return "../imagenes/gatorade.jpg";
-  if (nombreNormalizado.includes("powerade")) return "../imagenes/powerade.jpg";
+  if (nombreNormalizado.includes("agua")) return "/gym/imagenes/agua.jpg";
+  if (nombreNormalizado.includes("gatorade"))
+    return "/gym/imagenes/gatorade.jpg";
+  if (nombreNormalizado.includes("powerade"))
+    return "/gym/imagenes/powerade.jpg";
   if (
     nombreNormalizado.includes("té") ||
     nombreNormalizado.includes("te helado") ||
     nombreNormalizado === "te" ||
     nombreNormalizado.includes("te ")
   ) {
-    return "../imagenes/te.jpg";
+    return "/gym/imagenes/te.jpg";
   }
-  if (nombreNormalizado.includes("monster")) return "../imagenes/monster.jpg";
+  if (nombreNormalizado.includes("monster")) return "/gym/imagenes/monster.jpg";
 
-  return "../imagenes/icon-192.png";
+  return "/gym/imagenes/icon-192.png";
 }
 
 async function cargarResumenVentasHoy() {
@@ -137,28 +139,37 @@ async function cargarProductos() {
       card.classList.add("producto-card");
 
       card.innerHTML = `
-        <div class="producto-imagen-wrap">
-          <img
-            src="${imagenProducto}"
-            alt="${nombreProducto}"
-            class="producto-imagen"
-            loading="lazy"
-            onerror="this.src='/imagenes/icon-192.png'"
-          />
-        </div>
+  <div class="producto-imagen-wrap">
+    <img
+      src="${imagenProducto}"
+      alt="${nombreProducto}"
+      class="producto-imagen"
+      loading="lazy"
+      onerror="this.src='/gym/imagenes/icon-192.png'"
+    />
+  </div>
 
-        <h3>${nombreProducto}</h3>
-        <p class="producto-precio">${formatearPrecio(producto.precio)}</p>
-        <p class="producto-stock">Stock: ${stock}</p>
+  <h3>${nombreProducto}</h3>
+  <p class="producto-precio">${formatearPrecio(producto.precio)}</p>
+  <p class="producto-stock">Stock: ${stock}</p>
 
-        <button class="btn-vender-producto" ${sinStock ? "disabled" : ""}>
-          ${sinStock ? "Sin stock" : "Vender"}
-        </button>
-      `;
+  <button class="btn-vender-producto" ${sinStock ? "disabled" : ""}>
+    ${sinStock ? "Sin stock" : "Vender"}
+  </button>
+
+  <button class="btn-agregar-stock">
+    Agregar stock
+  </button>
+`;
 
       const botonVender = card.querySelector(".btn-vender-producto");
       botonVender.addEventListener("click", () =>
         venderProducto(productoId, botonVender),
+      );
+
+      const botonStock = card.querySelector(".btn-agregar-stock");
+      botonStock.addEventListener("click", () =>
+        agregarStockProducto(productoId),
       );
 
       lista.appendChild(card);
@@ -236,3 +247,45 @@ document.addEventListener("DOMContentLoaded", async () => {
     btnExportarVentasHoy.addEventListener("click", exportarVentasHoy);
   }
 });
+
+async function agregarStockProducto(productoId) {
+  try {
+    const cantidadTexto = prompt(
+      "Ingresa la cantidad de stock que deseas agregar:",
+    );
+
+    if (cantidadTexto === null) return;
+
+    const cantidad = Number(cantidadTexto);
+
+    if (!Number.isInteger(cantidad) || cantidad <= 0) {
+      alert("Ingresa una cantidad válida mayor a 0");
+      return;
+    }
+
+    const productoRef = db.collection("productos").doc(productoId);
+    const productoSnap = await productoRef.get();
+
+    if (!productoSnap.exists) {
+      alert("Producto no encontrado");
+      return;
+    }
+
+    const producto = productoSnap.data();
+    const stockActual = Number(producto.stock || 0);
+    const nuevoStock = stockActual + cantidad;
+
+    await productoRef.update({
+      stock: nuevoStock,
+    });
+
+    await cargarProductos();
+
+    alert(
+      `Stock actualizado. Nuevo stock de ${producto.nombre}: ${nuevoStock}`,
+    );
+  } catch (error) {
+    console.error("Error al agregar stock:", error);
+    alert("No se pudo actualizar el stock");
+  }
+}

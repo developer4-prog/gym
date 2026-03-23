@@ -1,4 +1,4 @@
-const CACHE_NAME = "gym-app-v10.1";
+const CACHE_NAME = "gym-app-v10.2";
 const BASE_PATH = self.location.pathname.replace(/\/service-worker\.js$/, "");
 
 const urlsToCache = [
