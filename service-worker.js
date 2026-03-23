@@ -1,4 +1,4 @@
-const CACHE_NAME = "gym-app-v10.44";
+const CACHE_NAME = "gym-app-v10.45";
 const BASE_PATH = self.location.pathname.replace(/\/service-worker\.js$/, "");
 
 const urlsToCache = [
@@ -36,41 +36,45 @@ self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => cache.addAll(urlsToCache)),
   );
-  self.skipWaiting();
 });
 
 self.addEventListener("activate", (event) => {
   event.waitUntil(
-    caches.keys().then((cacheNames) =>
-      Promise.all(
+    caches.keys().then(async (cacheNames) => {
+      await Promise.all(
         cacheNames.map((cache) => {
           if (cache !== CACHE_NAME) {
             return caches.delete(cache);
           }
         }),
-      ),
-    ),
+      );
+
+      await self.clients.claim();
+    }),
   );
-  self.clients.claim();
 });
 
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
 
   const req = event.request;
+  const url = new URL(req.url);
+
+  if (url.origin !== self.location.origin) return;
 
   if (req.mode === "navigate") {
     event.respondWith(
       fetch(req)
         .then((networkResponse) => {
-          const copy = networkResponse.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(req, copy));
+          if (networkResponse && networkResponse.status === 200) {
+            const copy = networkResponse.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(req, copy));
+          }
           return networkResponse;
         })
-        .catch(() => {
-          return caches.match(req).then((cachedResponse) => {
-            return cachedResponse || caches.match(`${BASE_PATH}/index.html`);
-          });
+        .catch(async () => {
+          const cachedResponse = await caches.match(req);
+          return cachedResponse || caches.match(`${BASE_PATH}/html/index.html`);
         }),
     );
     return;
@@ -81,8 +85,10 @@ self.addEventListener("fetch", (event) => {
       if (cachedResponse) return cachedResponse;
 
       return fetch(req).then((networkResponse) => {
-        const copy = networkResponse.clone();
-        caches.open(CACHE_NAME).then((cache) => cache.put(req, copy));
+        if (networkResponse && networkResponse.status === 200) {
+          const copy = networkResponse.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(req, copy));
+        }
         return networkResponse;
       });
     }),
