@@ -62,6 +62,40 @@
           </a>
         </div>
 
+        <div class="dashboard-card">
+          <h3>🔐 Seguridad</h3>
+
+          <button id="togglePasswordBox" class="btn-main">
+            Cambiar contraseña
+          </button>
+
+          <div id="passwordBox" class="password-box hidden">
+            <input
+              type="password"
+              id="currentPassword"
+              placeholder="Contraseña actual"
+            />
+
+            <input
+              type="password"
+              id="newPassword"
+              placeholder="Nueva contraseña"
+            />
+
+            <input
+              type="password"
+              id="confirmPassword"
+              placeholder="Confirmar nueva contraseña"
+            />
+
+            <button id="changePasswordBtn" class="btn-main">
+              Actualizar contraseña
+            </button>
+
+            <div id="passwordMsg" class="password-msg hidden"></div>
+          </div>
+        </div>
+
         <button id="logoutBtn" class="logout-btn">Cerrar sesión</button>
       </div>
 

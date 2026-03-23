@@ -1,3 +1,18 @@
+function mostrarFeedback(tipo, mensaje) {
+  const cont = document.getElementById("ventas-state");
+  if (!cont) return;
+
+  cont.innerHTML = `
+    <div class="admin-feedback admin-feedback-${tipo}">
+      ${mensaje}
+    </div>
+  `;
+
+  setTimeout(() => {
+    cont.innerHTML = "";
+  }, 2500);
+}
+
 function obtenerFechaHoyLocal() {
   const hoy = new Date();
   const year = hoy.getFullYear();
@@ -106,7 +121,7 @@ async function venderProducto(productoId, boton) {
     await cargarResumenVentasHoy();
   } catch (error) {
     console.error("Error registrando venta:", error);
-    alert(error.message || "No se pudo registrar la venta.");
+    mostrarFeedback("error", error.message || "No se pudo registrar la venta.");
   } finally {
     boton.disabled = false;
     boton.textContent = "Vender";
@@ -115,17 +130,20 @@ async function venderProducto(productoId, boton) {
 
 async function cargarProductos() {
   const lista = document.getElementById("productos-lista");
+  const ventasState = document.getElementById("ventas-state");
 
   try {
-    const snapshot = await db.collection("productos").get();
-
+    UIState.showLoading(ventasState, "Cargando productos...");
     lista.innerHTML = "";
 
+    const snapshot = await db.collection("productos").get();
+
     if (snapshot.empty) {
-      lista.innerHTML =
-        '<p class="empty-state">No hay productos registrados.</p>';
+      UIState.showEmpty(ventasState, "No hay productos registrados todavía.");
       return;
     }
+
+    UIState.clearState(ventasState);
 
     snapshot.forEach((doc) => {
       const producto = doc.data();
@@ -139,28 +157,28 @@ async function cargarProductos() {
       card.classList.add("producto-card");
 
       card.innerHTML = `
-  <div class="producto-imagen-wrap">
-    <img
-      src="${imagenProducto}"
-      alt="${nombreProducto}"
-      class="producto-imagen"
-      loading="lazy"
-      onerror="this.src='/gym/imagenes/icon-192.png'"
-    />
-  </div>
+        <div class="producto-imagen-wrap">
+          <img
+            src="${imagenProducto}"
+            alt="${nombreProducto}"
+            class="producto-imagen"
+            loading="lazy"
+            onerror="this.src='/gym/imagenes/icon-192.png'"
+          />
+        </div>
 
-  <h3>${nombreProducto}</h3>
-  <p class="producto-precio">${formatearPrecio(producto.precio)}</p>
-  <p class="producto-stock">Stock: ${stock}</p>
+        <h3>${nombreProducto}</h3>
+        <p class="producto-precio">${formatearPrecio(producto.precio)}</p>
+        <p class="producto-stock">Stock: ${stock}</p>
 
-  <button class="btn-vender-producto" ${sinStock ? "disabled" : ""}>
-    ${sinStock ? "Sin stock" : "Vender"}
-  </button>
+        <button class="btn-vender-producto" ${sinStock ? "disabled" : ""}>
+          ${sinStock ? "Sin stock" : "Vender"}
+        </button>
 
-  <button class="btn-agregar-stock">
-    Agregar stock
-  </button>
-`;
+        <button class="btn-agregar-stock">
+          Agregar stock
+        </button>
+      `;
 
       const botonVender = card.querySelector(".btn-vender-producto");
       botonVender.addEventListener("click", () =>
@@ -176,7 +194,12 @@ async function cargarProductos() {
     });
   } catch (error) {
     console.error("Error cargando productos:", error);
-    lista.innerHTML = '<p class="empty-state">Error cargando productos.</p>';
+
+    UIState.showError(
+      ventasState,
+      "No se pudieron cargar los productos.",
+      cargarProductos,
+    );
   }
 }
 
@@ -195,7 +218,7 @@ async function exportarVentasHoy() {
       .get();
 
     if (snapshot.empty) {
-      alert("No hay ventas registradas hoy.");
+      mostrarFeedback("warning", "No hay ventas registradas hoy.");
       return;
     }
 
@@ -231,7 +254,7 @@ async function exportarVentasHoy() {
     URL.revokeObjectURL(url);
   } catch (error) {
     console.error("Error exportando ventas:", error);
-    alert("No se pudieron exportar las ventas.");
+    mostrarFeedback("error", "No se pudieron exportar las ventas.");
   } finally {
     boton.disabled = false;
     boton.textContent = "Exportar ventas de hoy";
@@ -245,6 +268,23 @@ document.addEventListener("DOMContentLoaded", async () => {
   const btnExportarVentasHoy = document.getElementById("btnExportarVentasHoy");
   if (btnExportarVentasHoy) {
     btnExportarVentasHoy.addEventListener("click", exportarVentasHoy);
+  }
+});
+
+// ===== TOGGLE CAMBIO DE PASSWORD =====
+document.addEventListener("DOMContentLoaded", () => {
+  const toggle = document.getElementById("togglePasswordBox");
+  const box = document.getElementById("passwordBox");
+
+  if (toggle && box) {
+    toggle.addEventListener("click", () => {
+      box.classList.toggle("hidden");
+    });
+  }
+
+  const btn = document.getElementById("changePasswordBtn");
+  if (btn) {
+    btn.addEventListener("click", cambiarPasswordUsuario);
   }
 });
 
@@ -267,7 +307,7 @@ async function agregarStockProducto(productoId) {
     const productoSnap = await productoRef.get();
 
     if (!productoSnap.exists) {
-      alert("Producto no encontrado");
+      mostrarFeedback("error", "Producto no encontrado");
       return;
     }
 
@@ -286,6 +326,6 @@ async function agregarStockProducto(productoId) {
     );
   } catch (error) {
     console.error("Error al agregar stock:", error);
-    alert("No se pudo actualizar el stock");
+    mostrarFeedback("success", `Stock actualizado. Nuevo stock: ${nuevoStock}`);
   }
 }

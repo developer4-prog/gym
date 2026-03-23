@@ -365,3 +365,67 @@
 .logout-btn:active {
   transform: scale(0.97);
 }
+
+.password-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.password-form input {
+  width: 100%;
+}
+
+.password-msg {
+  margin-top: 10px;
+  margin-bottom: 6px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.password-msg.success {
+  background: rgba(0, 200, 83, 0.14);
+  border: 1px solid rgba(0, 230, 118, 0.35);
+  color: #00e676;
+}
+
+.password-msg.error {
+  background: rgba(255, 77, 109, 0.12);
+  border: 1px solid rgba(255, 77, 109, 0.35);
+  color: #ff6b81;
+}
+
+.password-msg.warning {
+  background: rgba(255, 193, 7, 0.12);
+  border: 1px solid rgba(255, 193, 7, 0.35);
+  color: #ffd54f;
+}
+
+.password-box {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  padding: 14px;
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(10px);
+
+  animation: fadeIn 0.25s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

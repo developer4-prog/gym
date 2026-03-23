@@ -180,3 +180,124 @@ if (logoutBtn) {
     }
   });
 }
+
+const currentPassword = document.getElementById("currentPassword");
+const newPassword = document.getElementById("newPassword");
+const confirmPassword = document.getElementById("confirmPassword");
+const passwordMsg = document.getElementById("passwordMsg");
+
+function mostrarMensajePassword(tipo, mensaje) {
+  if (!passwordMsg) return;
+
+  passwordMsg.textContent = mensaje;
+  passwordMsg.className = `password-msg ${tipo}`;
+
+  setTimeout(() => {
+    passwordMsg.textContent = "";
+    passwordMsg.className = "password-msg hidden";
+  }, 3500);
+}
+
+async function cambiarPasswordUsuario() {
+  const user = auth.currentUser;
+  const changePasswordBtn = document.getElementById("changePasswordBtn");
+
+  if (!user) {
+    mostrarMensajePassword("error", "Tu sesión no está activa.");
+    return;
+  }
+
+  const actual = currentPassword ? currentPassword.value.trim() : "";
+  const nueva = newPassword ? newPassword.value.trim() : "";
+  const confirmar = confirmPassword ? confirmPassword.value.trim() : "";
+
+  if (!actual || !nueva || !confirmar) {
+    mostrarMensajePassword("warning", "Completa todos los campos.");
+    return;
+  }
+
+  if (nueva.length < 6) {
+    mostrarMensajePassword(
+      "warning",
+      "La nueva contraseña debe tener al menos 6 caracteres.",
+    );
+    return;
+  }
+
+  if (nueva !== confirmar) {
+    mostrarMensajePassword("warning", "La confirmación no coincide.");
+    return;
+  }
+
+  if (!user.email) {
+    mostrarMensajePassword("error", "No se pudo verificar tu correo.");
+    return;
+  }
+
+  try {
+    if (changePasswordBtn) {
+      changePasswordBtn.disabled = true;
+      changePasswordBtn.textContent = "Actualizando...";
+    }
+
+    const credential = firebase.auth.EmailAuthProvider.credential(
+      user.email,
+      actual,
+    );
+
+    await user.reauthenticateWithCredential(credential);
+    await user.updatePassword(nueva);
+
+    if (currentPassword) currentPassword.value = "";
+    if (newPassword) newPassword.value = "";
+    if (confirmPassword) confirmPassword.value = "";
+
+    mostrarMensajePassword("success", "Contraseña actualizada correctamente.");
+
+    const box = document.getElementById("passwordBox");
+    if (box) {
+      setTimeout(() => {
+        box.classList.add("hidden");
+      }, 1200);
+    }
+  } catch (error) {
+    console.error("Error cambiando contraseña:", error);
+
+    if (error.code === "auth/wrong-password") {
+      mostrarMensajePassword("error", "La contraseña actual es incorrecta.");
+    } else if (error.code === "auth/weak-password") {
+      mostrarMensajePassword(
+        "warning",
+        "La nueva contraseña es demasiado débil.",
+      );
+    } else if (error.code === "auth/too-many-requests") {
+      mostrarMensajePassword(
+        "error",
+        "Demasiados intentos. Intenta más tarde.",
+      );
+    } else {
+      mostrarMensajePassword("error", "No se pudo actualizar la contraseña.");
+    }
+  } finally {
+    if (changePasswordBtn) {
+      changePasswordBtn.disabled = false;
+      changePasswordBtn.textContent = "Actualizar contraseña";
+    }
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const toggle = document.getElementById("togglePasswordBox");
+  const box = document.getElementById("passwordBox");
+  const btn = document.getElementById("changePasswordBtn");
+
+  if (toggle && box) {
+    toggle.addEventListener("click", () => {
+      box.classList.toggle("hidden");
+    });
+  }
+
+  if (btn) {
+    btn.addEventListener("click", cambiarPasswordUsuario);
+  }
+});

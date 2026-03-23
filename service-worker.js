@@ -1,9 +1,9 @@
-const CACHE_NAME = "gym-app-v10.45";
+const CACHE_NAME = "gym-app-v10.46";
 const BASE_PATH = self.location.pathname.replace(/\/service-worker\.js$/, "");
 
 const urlsToCache = [
   `${BASE_PATH}/`,
-  `${BASE_PATH}/index.html`,
+  // `${BASE_PATH}/index.html`, // probable ruta mala, la quitamos por ahora
   `${BASE_PATH}/html/index.html`,
   `${BASE_PATH}/html/login.html`,
   `${BASE_PATH}/html/dashboard.html`,
@@ -34,7 +34,16 @@ const urlsToCache = [
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(urlsToCache)),
+    caches.open(CACHE_NAME).then(async (cache) => {
+      for (const url of urlsToCache) {
+        try {
+          await cache.add(url);
+          console.log("Cacheado:", url);
+        } catch (error) {
+          console.error("No se pudo cachear:", url, error);
+        }
+      }
+    }),
   );
 });
 

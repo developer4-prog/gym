@@ -730,3 +730,40 @@
 .admin-container {
   position: relative;
 }
+
+body {
+  opacity: 1;
+  transition: opacity 0.25s ease;
+}
+
+body:not(.admin-ready) {
+  opacity: 0;
+}
+
+.admin-feedback {
+  margin: 16px 0 6px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  font-weight: 600;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+.admin-feedback-success {
+  background: rgba(0, 200, 83, 0.14);
+  border: 1px solid rgba(0, 230, 118, 0.35);
+  color: #00e676;
+}
+
+.admin-feedback-error {
+  background: rgba(255, 77, 109, 0.12);
+  border: 1px solid rgba(255, 77, 109, 0.35);
+  color: #ff6b81;
+}
+
+.admin-feedback-warning {
+  background: rgba(255, 193, 7, 0.12);
+  border: 1px solid rgba(255, 193, 7, 0.35);
+  color: #ffd54f;
+}
