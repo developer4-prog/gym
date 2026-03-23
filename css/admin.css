@@ -198,30 +198,42 @@
 }
 
 .membresia-box {
-  margin: 15px 0;
-  padding: 12px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.08);
+  margin: 14px 0;
+  padding: 14px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   text-align: left;
+  animation: fadeInBox 0.25s ease;
 }
 
 .membresia-box label {
   display: block;
-  margin: 8px 0 4px;
+  margin: 0 0 6px;
   font-weight: 600;
   font-size: 14px;
-  color: #ffffff;
+  color: rgba(255, 255, 255, 0.92);
 }
 
 .membresia-box input {
   width: 100%;
-  padding: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 8px;
-  margin-bottom: 8px;
-  background: #ffffff;
+  height: 48px;
+  padding: 0 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  margin-bottom: 14px;
+  background: rgba(255, 255, 255, 0.96);
   color: #111111;
   -webkit-text-fill-color: #111111;
+  font-size: 15px;
+  outline: none;
+}
+
+.membresia-box input:focus {
+  border-color: rgba(0, 255, 128, 0.45);
+  box-shadow: 0 0 0 3px rgba(0, 255, 128, 0.08);
 }
 
 .membresia-box input::-webkit-datetime-edit {
@@ -229,23 +241,28 @@
 }
 
 .membresia-box input::-webkit-calendar-picker-indicator {
-  opacity: 1;
+  opacity: 0.85;
   cursor: pointer;
 }
 
 .btn-guardar-membresia {
   width: 100%;
-  padding: 10px;
-  background: #2e7d32;
+  height: 48px;
+  padding: 0 14px;
+  background: linear-gradient(135deg, #2e7d32, #43a047);
   color: #ffffff;
   border: none;
-  border-radius: 8px;
+  border-radius: 12px;
   cursor: pointer;
-  margin-top: 8px;
+  margin-top: 4px;
+  font-size: 16px;
+  font-weight: 700;
+  transition: 0.18s ease;
 }
 
 .btn-guardar-membresia:hover {
-  background: #256428;
+  filter: brightness(1.08);
+  transform: translateY(-1px);
 }
 
 .estado-membresia {
@@ -271,25 +288,30 @@
 
 .btn-toggle-membresia {
   width: 100%;
-  padding: 10px;
-  background: #444;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.08);
   color: white;
-  border: none;
-  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
   cursor: pointer;
-  margin: 10px 0;
+  margin: 12px 0;
+  font-weight: 600;
+  transition: 0.18s ease;
 }
 
 .btn-toggle-membresia:hover {
-  background: #333;
+  background: rgba(255, 255, 255, 0.14);
 }
 
-.membresia-box {
-  margin: 12px 0;
-  padding: 12px;
-  border-radius: 12px;
-  background: #f4f6f8;
-  text-align: left;
+@keyframes fadeInBox {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .asistencia-card {
