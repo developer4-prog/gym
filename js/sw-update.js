@@ -45,9 +45,12 @@ if ("serviceWorker" in navigator) {
     try {
       const banner = crearBannerUpdate();
 
-      const registration = await navigator.serviceWorker.register(
-        "/gym/service-worker.js",
-      );
+      const SERVICE_WORKER_PATH = window.location.pathname.includes("/gym/")
+        ? "/gym/service-worker.js"
+        : "/service-worker.js";
+
+      const registration =
+        await navigator.serviceWorker.register(SERVICE_WORKER_PATH);
 
       if (registration.waiting) {
         newWorker = registration.waiting;

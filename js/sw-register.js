@@ -19,9 +19,7 @@ function mostrarAvisoActualizacion() {
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", async () => {
     try {
-      const reg = await navigator.serviceWorker.register(
-        "/gym/service-worker.js",
-      );
+      const reg = await navigator.serviceWorker.register("/service-worker.js");
 
       reg.addEventListener("updatefound", () => {
         const newWorker = reg.installing;
