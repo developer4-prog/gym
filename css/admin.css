@@ -703,3 +703,30 @@
   font-weight: 600;
   font-size: 15px;
 }
+
+.logout-float {
+  position: fixed;
+  top: max(14px, env(safe-area-inset-top));
+  right: 14px;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(25, 25, 25, 0.95);
+  color: #fff;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+
+.logout-float:active {
+  transform: scale(0.96);
+}
+
+.admin-container {
+  position: relative;
+}
