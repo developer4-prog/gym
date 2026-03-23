@@ -682,3 +682,26 @@
   font-weight: 600;
   cursor: pointer;
 }
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.logout-admin-btn {
+  border: none;
+  background: #222;
+  color: white;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.logout-admin-btn:active {
+  transform: scale(0.97);
+}

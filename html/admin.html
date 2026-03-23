@@ -19,8 +19,14 @@
 
   <body>
     <div class="admin-container">
-      <h1>Panel de administración</h1>
-      <p class="subtitle">Gestiona clientes y asistencias del gimnasio</p>
+      <div class="admin-header">
+        <div>
+          <h1>Panel de administración</h1>
+          <p class="subtitle">Gestiona clientes y asistencias del gimnasio</p>
+        </div>
+
+        <button id="logoutAdminBtn" class="logout-admin-btn">🚪 Salir</button>
+      </div>
 
       <div class="admin-grid">
         <a href="admin-clientes.html" class="admin-card">
@@ -49,5 +55,6 @@
       </div>
     </div>
     <script src="../js/sw-update.js"></script>
+    <script src="../js/logout-admin.js"></script>
   </body>
 </html>
