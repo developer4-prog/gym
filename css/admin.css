@@ -691,17 +691,15 @@
   margin-bottom: 20px;
 }
 
-.logout-admin-btn {
-  border: none;
-  background: #222;
-  color: white;
-  padding: 10px 14px;
-  border-radius: 12px;
-  font-weight: 700;
-  cursor: pointer;
-  white-space: nowrap;
+.admin-footer {
+  margin-top: 40px;
+  text-align: center;
 }
 
-.logout-admin-btn:active {
-  transform: scale(0.97);
+.logout-footer {
+  background: none;
+  border: none;
+  color: #888;
+  font-weight: 600;
+  font-size: 15px;
 }

@@ -9,8 +9,8 @@ if (logoutBtn) {
       await firebase.auth().signOut();
       window.location.href = "login.html";
     } catch (error) {
-      alert("Error al cerrar sesión");
-      console.error(error);
+      console.error("Error al cerrar sesión:", error);
+      alert("No se pudo cerrar sesión.");
     }
   });
 }
