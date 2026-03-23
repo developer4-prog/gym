@@ -201,7 +201,7 @@
   margin: 15px 0;
   padding: 12px;
   border-radius: 12px;
-  background: #f4f6f8;
+  background: rgba(255, 255, 255, 0.08);
   text-align: left;
 }
 
@@ -210,21 +210,34 @@
   margin: 8px 0 4px;
   font-weight: 600;
   font-size: 14px;
+  color: #ffffff;
 }
 
 .membresia-box input {
   width: 100%;
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 8px;
   margin-bottom: 8px;
+  background: #ffffff;
+  color: #111111;
+  -webkit-text-fill-color: #111111;
+}
+
+.membresia-box input::-webkit-datetime-edit {
+  color: #111111;
+}
+
+.membresia-box input::-webkit-calendar-picker-indicator {
+  opacity: 1;
+  cursor: pointer;
 }
 
 .btn-guardar-membresia {
   width: 100%;
   padding: 10px;
   background: #2e7d32;
-  color: white;
+  color: #ffffff;
   border: none;
   border-radius: 8px;
   cursor: pointer;

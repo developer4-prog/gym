@@ -87,8 +87,15 @@ function calcularEstadoMembresia(membresiaFin) {
     return { texto: "Sin registrar", clase: "sin-membresia" };
   }
 
+  let fin;
+
+  if (typeof membresiaFin.toDate === "function") {
+    fin = membresiaFin.toDate();
+  } else {
+    fin = new Date(membresiaFin + "T23:59:59");
+  }
+
   const hoy = new Date();
-  const fin = new Date(membresiaFin + "T23:59:59");
 
   if (hoy > fin) {
     return { texto: "Vencida", clase: "vencida" };
@@ -199,14 +206,14 @@ async function cargarClientes() {
             <input
               type="date"
               id="membresia-inicio-${uid}"
-              value="${user.membresiaInicio || ""}"
+              value="${formatearFechaInput(user.membresiaInicio)}"
             />
 
             <label for="membresia-fin-${uid}">Fin membresía</label>
             <input
               type="date"
               id="membresia-fin-${uid}"
-              value="${user.membresiaFin || ""}"
+              value="${formatearFechaInput(user.membresiaFin)}"
             />
 
             <button class="btn-guardar-membresia">Guardar membresía</button>
@@ -296,4 +303,20 @@ if (buscador) {
       card.style.display = nombre.includes(texto) ? "block" : "none";
     });
   });
+}
+
+function formatearFechaInput(fecha) {
+  if (!fecha) return "";
+
+  if (fecha.toDate) {
+    const d = fecha.toDate();
+    const year = d.getFullYear();
+    const month = String(d.getMonth() + 1).padStart(2, "0");
+    const day = String(d.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  }
+
+  if (typeof fecha === "string") return fecha;
+
+  return "";
 }

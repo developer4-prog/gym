@@ -21,7 +21,6 @@ const urlsToCache = [
   `${BASE_PATH}/js/login.js`,
   `${BASE_PATH}/js/firebase-config.js`,
   `${BASE_PATH}/js/admin-ventas.js`,
-  `${BASE_PATH}/imagenes/fondo.jpg`,
   `${BASE_PATH}/imagenes/agua.jpg`,
   `${BASE_PATH}/imagenes/te.jpg`,
   `${BASE_PATH}/imagenes/powerade.jpg`,
